@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a5276">
+<title>CKD Constipation Management Protocol v3.2</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" onerror="window.__mermaidFailed=true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" onerror="window.__html2pdfFailed=true"></script>
+<style>
+:root{
+  --primary:#1a5276;--primary-light:#2980b9;--accent:#e67e22;
+  --success:#1e8449;--success-bg:#d5f5e3;--danger:#c0392b;--danger-bg:#fdedec;
+  --warning:#b7950b;--warning-bg:#fef9e7;--bg:#f4f6f7;--card:#ffffff;
+  --text:#2c3e50;--text-light:#5d6d7e;--border:#dce1e3;
+  --radius:10px;--shadow:0 2px 12px rgba(0,0,0,0.08);
+  --focus:0 0 0 3px rgba(41,128,185,0.45);
+}
+[data-theme="dark"]{
+  --primary:#5499c7;--primary-light:#85c1e9;--accent:#f39c12;
+  --success:#58d68d;--success-bg:#1e3a2a;--danger:#ec7063;--danger-bg:#3a1e1e;
+  --warning:#f4d03f;--warning-bg:#3a3418;--bg:#12181f;--card:#1c2530;
+  --text:#e8eef2;--text-light:#a9b7c2;--border:#2c3a48;
+  --shadow:0 2px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;transition:background .25s,color .25s}
+.app-header{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);color:white;padding:1.25rem 1rem 1rem;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.app-header h1{font-size:1.25rem;font-weight:700;letter-spacing:-.3px}
+.app-header p{font-size:.78rem;opacity:.9;margin-top:.25rem}
+.header-tools{position:absolute;top:.6rem;right:.7rem;display:flex;gap:.4rem;flex-wrap:wrap;max-width:70%}
+.icon-btn{background:rgba(255,255,255,.18);color:white;border:none;height:34px;min-width:34px;padding:0 .55rem;border-radius:8px;font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;font-weight:600}
+.icon-btn:hover{background:rgba(255,255,255,.32)}
+.icon-btn:focus-visible{outline:var(--focus)}
+.container{max-width:960px;margin:0 auto;padding:1rem}
+.progress-bar{display:flex;gap:.25rem;padding:.6rem .75rem;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1rem;overflow-x:auto}
+.progress-step{flex:1;min-width:72px;text-align:center;font-size:.62rem;color:var(--text-light);padding:.4rem .2rem;border-radius:6px;cursor:pointer;white-space:nowrap;border:none;background:transparent;font-family:inherit}
+.progress-step:hover{background:rgba(41,128,185,.1)}
+.progress-step:focus-visible{outline:var(--focus)}
+.progress-step.active{background:var(--primary);color:white;font-weight:600}
+.progress-step.completed{background:var(--success-bg);color:var(--success)}
+[data-theme="dark"] .progress-step.active{color:#12181f}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1rem;animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.card{animation:none!important}}
+.card h2{font-size:1.1rem;color:var(--primary);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:.5rem}
+.card h3{font-size:.95rem;color:var(--primary);margin:1rem 0 .5rem}
+.card p,.card li{font-size:.9rem;color:var(--text)}
+.card ul,.card ol{padding-left:1.3rem;margin:.4rem 0}
+.card li{margin-bottom:.35rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-weight:600;font-size:.85rem;margin-bottom:.35rem;color:var(--text)}
+.form-group select,.form-group input[type="text"],.form-group input[type="date"]{width:100%;padding:.6rem .75rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;background:var(--card);color:var(--text);font-family:inherit}
+.form-group select:focus,.form-group input:focus{outline:none;border-color:var(--primary-light);box-shadow:var(--focus)}
+.checkbox-group{display:flex;flex-direction:column;gap:.4rem}
+.checkbox-item{display:flex;align-items:center;gap:.5rem;font-size:.85rem}
+.checkbox-item input[type="checkbox"]{width:18px;height:18px;accent-color:var(--primary);cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.7rem 1.4rem;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;width:100%;font-family:inherit}
+.btn:focus-visible{outline:var(--focus)}
+.btn-primary{background:var(--primary);color:white}
+.btn-primary:hover{background:var(--primary-light);transform:translateY(-1px)}
+.btn-secondary{background:var(--card);color:var(--primary);border:2px solid var(--primary)}
+.btn-secondary:hover{background:rgba(41,128,185,.1)}
+.btn-group{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.btn-group .btn{flex:1;min-width:130px}
+.btn-sm{padding:.4rem .8rem;font-size:.78rem;width:auto}
+.alert{padding:.75rem 1rem;border-radius:8px;font-size:.85rem;margin:.75rem 0;border-left:4px solid;color:var(--text)}
+.alert-danger{background:var(--danger-bg);border-color:var(--danger)}
+.alert-warning{background:var(--warning-bg);border-color:var(--warning)}
+.alert-success{background:var(--success-bg);border-color:var(--success)}
+.alert-info{background:rgba(41,128,185,.1);border-color:var(--primary-light)}
+.drug-table{width:100%;border-collapse:collapse;font-size:.8rem;margin:.75rem 0}
+.drug-table th{background:var(--primary);color:white;padding:.5rem .6rem;text-align:left;font-weight:600}
+.drug-table td{padding:.5rem .6rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text)}
+.drug-table tr:nth-child(even){background:rgba(0,0,0,.02)}
+[data-theme="dark"] .drug-table tr:nth-child(even){background:rgba(255,255,255,.03)}
+.badge{display:inline-block;padding:.15rem .5rem;border-radius:20px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.3px;cursor:help}
+.badge-safe{background:var(--success-bg);color:var(--success)}
+.badge-caution{background:var(--warning-bg);color:var(--warning)}
+.badge-avoid{background:var(--danger-bg);color:var(--danger)}
+.has-tooltip{position:relative;cursor:help}
+.has-tooltip::after{content:attr(data-tip);position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:#2c3e50;color:#fff;padding:.4rem .6rem;border-radius:6px;font-size:.7rem;font-weight:400;white-space:normal;width:220px;text-align:left;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;line-height:1.4;text-transform:none;letter-spacing:0}
+.has-tooltip:hover::after,.has-tooltip:focus::after{opacity:1}
+.hidden{display:none!important}
+.step-content{display:none}
+.step-content.active{display:block}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.75rem 0}
+.summary-item{background:rgba(0,0,0,.03);padding:.5rem .75rem;border-radius:6px;font-size:.8rem}
+[data-theme="dark"] .summary-item{background:rgba(255,255,255,.05)}
+.summary-item strong{color:var(--primary);display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.3px}
+.bristol-scale{display:flex;gap:.3rem;margin:.75rem 0;flex-wrap:wrap}
+.bristol-item{flex:1;min-width:60px;text-align:center;padding:.5rem .3rem;border-radius:6px;font-size:.7rem;font-weight:600;border:2px solid var(--border);cursor:pointer;background:var(--card);color:var(--text);font-family:inherit}
+.bristol-item:hover{border-color:var(--primary-light)}
+.bristol-item:focus-visible{outline:var(--focus)}
+.bristol-item.selected{border-color:var(--primary);background:rgba(41,128,185,.12);color:var(--primary)}
+.bristol-item .type-num{font-size:1.1rem;display:block}
+.bristol-item .type-desc{font-size:.6rem;color:var(--text-light);font-weight:400}
+.collapsible-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:.6rem 0;border-bottom:1px solid var(--border);background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;color:var(--text);font-family:inherit}
+.collapsible-header:focus-visible{outline:var(--focus)}
+.collapsible-header h3{margin:0;font-size:.9rem}
+.collapsible-header .arrow{transition:transform .2s;font-size:.7rem;color:var(--text-light)}
+.collapsible-header.open .arrow{transform:rotate(90deg)}
+.collapsible-body{display:none;padding:.5rem 0}
+.collapsible-body.open{display:block}
+.tab-bar{display:flex;gap:.3rem;margin-bottom:1rem;background:var(--card);padding:.35rem;border-radius:var(--radius);box-shadow:var(--shadow)}
+.tab-btn{flex:1;padding:.5rem;border:none;background:transparent;border-radius:6px;font-size:.82rem;font-weight:600;color:var(--text-light);cursor:pointer;font-family:inherit}
+.tab-btn.active{background:var(--primary);color:white}
+.tab-btn:focus-visible{outline:var(--focus)}
+.mermaid-wrap{background:var(--card);border-radius:var(--radius);padding:1rem;overflow-x:auto;text-align:center;min-height:400px;display:flex;align-items:center;justify-content:center}
+.mermaid-wrap svg,.flowchart-svg{display:block;max-width:100%;height:auto;min-height:300px}
+.flow-node{stroke-width:2}
+.flow-box{fill:#eaf2f8;stroke:#2980b9}
+.flow-start{fill:#1a5276;stroke:#1a5276}
+.flow-urgent{fill:#fdedec;stroke:#c0392b}
+.flow-goal{fill:#d5f5e3;stroke:#1e8449}
+.flow-dual{fill:#fef9e7;stroke:#e67e22}
+.flow-label{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:11px;fill:#2c3e50;text-anchor:middle;font-weight:600}
+.flow-label-light{fill:#fff}
+.flow-line{stroke:#7f8c8d;stroke-width:1.5;fill:none}
+.flow-line-urgent{stroke:#c0392b;stroke-width:1.8;fill:none}
+.flow-arrow{fill:#7f8c8d}
+[data-theme="dark"] .flow-box{fill:#1e3a4a;stroke:#5499c7}
+[data-theme="dark"] .flow-start{fill:#2980b9;stroke:#85c1e9}
+[data-theme="dark"] .flow-urgent{fill:#3a1e1e;stroke:#ec7063}
+[data-theme="dark"] .flow-goal{fill:#1e3a2a;stroke:#58d68d}
+[data-theme="dark"] .flow-dual{fill:#3a3418;stroke:#f4d03f}
+[data-theme="dark"] .flow-label{fill:#e8eef2}
+[data-theme="dark"] .flow-label-light{fill:#12181f}
+.table-search{width:100%;padding:.5rem .75rem;border:2px solid var(--border);border-radius:8px;font-size:.85rem;background:var(--card);color:var(--text);margin-bottom:.5rem;font-family:inherit}
+.table-search:focus{outline:none;border-color:var(--primary-light);box-shadow:var(--focus)}
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#2c3e50;color:white;padding:.7rem 1.2rem;border-radius:8px;font-size:.85rem;box-shadow:0 6px 20px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:500}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+.version-stamp{text-align:center;font-size:.68rem;color:var(--text-light);margin-top:.5rem;font-style:italic}
+.app-footer{text-align:center;padding:1.5rem 1rem;font-size:.7rem;color:var(--text-light)}
+
+/* === SEVERITY BAR === */
+.severity-container{margin:1rem 0;padding:.85rem 1rem;background:rgba(0,0,0,.03);border-radius:10px;border:1px solid var(--border)}
+[data-theme="dark"] .severity-container{background:rgba(255,255,255,.04)}
+.severity-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem}
+.severity-header .label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-light)}
+.severity-header .value{font-size:1.1rem;font-weight:800}
+.severity-bar{height:22px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.08);position:relative;display:flex}
+[data-theme="dark"] .severity-bar{background:rgba(255,255,255,.08)}
+.severity-segment{flex:1;transition:opacity .3s}
+.sev-seg-mild{background:#58d68d}
+.sev-seg-moderate{background:#f4d03f}
+.sev-seg-severe{background:#ec7063}
+.sev-seg-urgent{background:#c0392b}
+.severity-marker{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--text);border-radius:2px;transition:left .4s ease;box-shadow:0 0 0 2px var(--card)}
+.severity-scale{display:flex;justify-content:space-between;font-size:.65rem;color:var(--text-light);margin-top:.35rem}
+.severity-legend{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;font-size:.7rem}
+.severity-legend-item{display:flex;align-items:center;gap:.3rem}
+.severity-legend-dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.severity-factors{margin-top:.75rem;font-size:.78rem;color:var(--text-light)}
+.severity-factors .factor{display:inline-block;background:rgba(41,128,185,.15);color:var(--primary);padding:.15rem .5rem;border-radius:12px;margin:.15rem .2rem 0 0;font-weight:600}
+[data-theme="dark"] .severity-factors .factor{background:rgba(84,153,199,.25)}
+
+/* === VIEW MODE SELECTOR === */
+.view-modes{display:flex;gap:.4rem;align-items:center;justify-content:center;margin-bottom:.75rem;flex-wrap:wrap;padding:.5rem;background:rgba(0,0,0,.03);border-radius:8px}
+[data-theme="dark"] .view-modes{background:rgba(255,255,255,.04)}
+.view-modes-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-light);margin-right:.25rem}
+.view-mode-btn{padding:.35rem .7rem;font-size:.75rem;font-weight:600;border:2px solid var(--border);background:var(--card);color:var(--text);border-radius:6px;cursor:pointer;font-family:inherit;transition:all .15s}
+.view-mode-btn:hover{border-color:var(--primary-light)}
+.view-mode-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
+.view-mode-btn:focus-visible{outline:var(--focus)}
+
+/* === CSS FLOWCHART === */
+.css-flow{background:var(--card);border-radius:var(--radius);padding:1.25rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;overflow-x:auto}
+.cf-node{background:#eaf2f8;border:2px solid #2980b9;border-radius:8px;padding:.55rem .9rem;font-size:.82rem;font-weight:600;color:#1a5276;text-align:center;max-width:280px;line-height:1.35}
+[data-theme="dark"] .cf-node{background:#1e3a4a;border-color:#5499c7;color:#e8eef2}
+.cf-node.cf-start{background:#1a5276;color:white;border-color:#1a5276;border-radius:25px;font-weight:700}
+[data-theme="dark"] .cf-node.cf-start{background:#2980b9;border-color:#85c1e9;color:#12181f}
+.cf-node.cf-urgent{background:#fdedec;border-color:#c0392b;color:#c0392b;font-weight:700}
+[data-theme="dark"] .cf-node.cf-urgent{background:#3a1e1e;border-color:#ec7063;color:#ec7063}
+.cf-node.cf-goal{background:#d5f5e3;border-color:#1e8449;color:#1e8449}
+[data-theme="dark"] .cf-node.cf-goal{background:#1e3a2a;border-color:#58d68d;color:#58d68d}
+.cf-node.cf-dual{background:#fef9e7;border-color:#e67e22;color:#b7950b}
+[data-theme="dark"] .cf-node.cf-dual{background:#3a3418;border-color:#f4d03f;color:#f4d03f}
+.cf-small{display:block;font-size:.68rem;font-weight:400;color:var(--text-light);margin-top:.15rem}
+.cf-arrow{font-size:1.4rem;color:var(--text-light);line-height:1;font-weight:700}
+.cf-decision{background:#fff;border:2px dashed #2980b9;border-radius:8px;padding:.5rem .9rem;font-size:.85rem;font-weight:700;color:#1a5276;text-align:center;max-width:320px}
+[data-theme="dark"] .cf-decision{background:#1c2530;border-color:#5499c7;color:#e8eef2}
+.cf-hint{font-size:.68rem;font-weight:400;color:var(--text-light);margin-top:.2rem}
+.cf-branch-row{display:flex;gap:.75rem;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin:.15rem 0}
+.cf-branch{display:flex;flex-direction:column;align-items:center;gap:.3rem;min-width:180px}
+.cf-branch-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.cf-branch-yes .cf-branch-label{color:#1e8449}
+.cf-branch-no .cf-branch-label{color:#5d6d7e}
+@media (max-width:500px){.cf-branch-row{flex-direction:column;align-items:center}.cf-node{max-width:90%}}
+
+/* === PRINT ALL === */
+#printAllContainer{display:none}
+body.print-all #printAllContainer{display:block}
+body.print-all .step-content,body.print-all .progress-bar,body.print-all .app-header,body.print-all .app-footer{display:none!important}
+.print-all-header{text-align:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:3px solid var(--primary)}
+.print-all-header h1{color:var(--primary);font-size:1.5rem;margin-bottom:.25rem}
+.print-all-header p{font-size:.85rem;color:var(--text-light)}
+.print-all-section{margin-bottom:1.5rem;page-break-inside:avoid}
+.print-all-section h2{color:var(--primary);font-size:1.15rem;border-bottom:2px solid var(--border);padding-bottom:.4rem;margin-bottom:.75rem}
+
+@media print{
+  .app-header,.progress-bar,.btn,.app-footer,.header-tools,.tab-bar,.view-modes{display:none!important}
+  .card{box-shadow:none;border:1px solid var(--border);page-break-inside:avoid}
+  .step-content{display:block!important}
+  body{background:white;color:black}
+  body.print-all .card{display:none}
+  body.print-all #printAllContainer{display:block}
+}
+@media (max-width:500px){.summary-grid{grid-template-columns:1fr}.bristol-item{min-width:45px;font-size:.6rem}.bristol-item .type-desc{display:none}.drug-table{font-size:.7rem}.drug-table th,.drug-table td{padding:.4rem}}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-tools">
+    <button class="icon-btn" id="langBtn" aria-label="Change language">🌐 EN</button>
+    <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+  </div>
+  <h1 data-i18n="appTitle">🫘 CKD Constipation Management</h1>
+  <p data-i18n="appSubtitle">Interactive stepwise protocol · v3.2</p>
+</header>
+
+<div class="container">
+
+  <nav class="progress-bar" id="progressBar" aria-label="Step navigation">
+    <button class="progress-step active" data-step="0" data-i18n="step0Nav">1. Red Flags</button>
+    <button class="progress-step" data-step="1" data-i18n="step1Nav">2. Assess</button>
+    <button class="progress-step" data-step="2" data-i18n="step2Nav">3. Non-Rx</button>
+    <button class="progress-step" data-step="3" data-i18n="step3Nav">4. First-Line</button>
+    <button class="progress-step" data-step="4" data-i18n="step4Nav">5. Second-Line</button>
+    <button class="progress-step" data-step="5" data-i18n="step5Nav">6. Special</button>
+    <button class="progress-step" data-step="6" data-i18n="step6Nav">7. Summary</button>
+    <button class="progress-step" data-step="7" data-i18n="step7Nav">📊 Algorithm</button>
+  </nav>
+
+  <!-- STEP 0: RED FLAGS -->
+  <section class="step-content active" id="step0">
+    <div class="card">
+      <h2 data-i18n="step0Title">🚨 Step 0 — Red Flag Screening</h2>
+      <div class="alert alert-info" data-i18n="step0Intro">Screen for alarm features before initiating laxative therapy.</div>
+      <div class="form-group">
+        <label data-i18n="durationLabel">Duration of current constipation</label>
+        <select id="duration">
+          <option value="" data-i18n="selectPlaceholder">Select...</option>
+          <option value="acute" data-i18n="durAcute">Acute (&lt;4 weeks)</option>
+          <option value="subacute" data-i18n="durSubacute">Subacute (4–12 weeks)</option>
+          <option value="chronic" data-i18n="durChronic">Chronic (&gt;12 weeks)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-i18n="lastBMLabel">Date of last bowel movement (optional)</label>
+        <input type="date" id="lastBMDate">
+      </div>
+      <div class="form-group">
+        <label data-i18n="redFlagsLabel">Alarm / Red-Flag Features</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" value="noBM7" class="redflag-check"> <span data-i18n="rf_noBM7">No bowel movement &gt;7 days</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="obstruction" class="redflag-check"> <span data-i18n="rf_obstruction">Signs of obstruction</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="rectalBleeding" class="redflag-check"> <span data-i18n="rf_rectalBleeding">Rectal bleeding / melena</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="weightLoss" class="redflag-check"> <span data-i18n="rf_weightLoss">Unexplained weight loss</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="anemia" class="redflag-check"> <span data-i18n="rf_anemia">Iron-deficiency anemia</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="fhxColon" class="redflag-check"> <span data-i18n="rf_fhxColon">Family history of colon cancer</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="newOnset50" class="redflag-check"> <span data-i18n="rf_newOnset50">New-onset constipation &gt;50 years</span></label>
+        </div>
+      </div>
+      <div id="redFlagAlert" class="hidden"></div>
+      <button class="btn btn-primary" onclick="goToStep(1)" data-i18n="continueToAssess">Continue to Assessment →</button>
+    </div>
+  </section>
+
+  <!-- STEP 1: ASSESSMENT -->
+  <section class="step-content" id="step1">
+    <div class="card">
+      <h2 data-i18n="step1Title">📋 Step 1 — Patient Assessment</h2>
+      <div class="form-group">
+        <label for="ckdStage" data-i18n="ckdStageLabel">CKD Stage / Dialysis Status</label>
+        <select id="ckdStage">
+          <option value="" data-i18n="selectPlaceholder">Select...</option>
+          <option value="ckd3" data-i18n="ckd3">CKD Stage 3 (eGFR 30–59)</option>
+          <option value="ckd4" data-i18n="ckd4">CKD Stage 4 (eGFR 15–29)</option>
+          <option value="ckd5" data-i18n="ckd5">CKD Stage 5 (eGFR &lt;15, not on dialysis)</option>
+          <option value="hd" data-i18n="hd">Hemodialysis (HD)</option>
+          <option value="pd" data-i18n="pd">Peritoneal Dialysis (PD)</option>
+          <option value="transplant" data-i18n="transplant">Kidney Transplant Recipient</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-i18n="bristolLabel">Bristol Stool Form Scale</label>
+        <div class="bristol-scale" id="bristolScale" role="radiogroup">
+          <button class="bristol-item" data-bs="1" type="button" role="radio" aria-checked="false"><span class="type-num">1</span><span class="type-desc" data-i18n="bs1">Hard lumps</span></button>
+          <button class="bristol-item" data-bs="2" type="button" role="radio" aria-checked="false"><span class="type-num">2</span><span class="type-desc" data-i18n="bs2">Lumpy sausage</span></button>
+          <button class="bristol-item" data-bs="3" type="button" role="radio" aria-checked="false"><span class="type-num">3</span><span class="type-desc" data-i18n="bs3">Cracked sausage</span></button>
+          <button class="bristol-item" data-bs="4" type="button" role="radio" aria-checked="false"><span class="type-num">4</span><span class="type-desc" data-i18n="bs4">Smooth &amp; soft</span></button>
+          <button class="bristol-item" data-bs="5" type="button" role="radio" aria-checked="false"><span class="type-num">5</span><span class="type-desc" data-i18n="bs5">Soft blobs</span></button>
+          <button class="bristol-item" data-bs="6" type="button" role="radio" aria-checked="false"><span class="type-num">6</span><span class="type-desc" data-i18n="bs6">Fluffy</span></button>
+          <button class="bristol-item" data-bs="7" type="button" role="radio" aria-checked="false"><span class="type-num">7</span><span class="type-desc" data-i18n="bs7">Watery</span></button>
+        </div>
+        <input type="hidden" id="bristolType" value="">
+      </div>
+      <div class="form-group">
+        <label for="bmFreq" data-i18n="bmFreqLabel">Bowel Movement Frequency</label>
+        <select id="bmFreq">
+          <option value="" data-i18n="selectPlaceholder">Select...</option>
+          <option value="daily" data-i18n="freqDaily">Daily or every 1–2 days</option>
+          <option value="every3" data-i18n="freqEvery3">Every 3–4 days</option>
+          <option value="every5" data-i18n="freqEvery5">Every 5–6 days</option>
+          <option value="less7" data-i18n="freqLess7">Less than once per week</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="currentLaxative" data-i18n="currentLaxLabel">Current Laxative Regimen</label>
+        <select id="currentLaxative">
+          <option value="" data-i18n="laxNone">None / not documented</option>
+          <option value="lactulose">Lactulose</option>
+          <option value="peg">PEG 3350</option>
+          <option value="docusate">Docusate</option>
+          <option value="senna">Senna / Bisacodyl</option>
+          <option value="multiple" data-i18n="laxMultiple">Multiple agents</option>
+          <option value="other" data-i18n="laxOther">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-i18n="medsLabel">Contributing Medications</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" value="phosphateBinders" class="med-check"> <span data-i18n="med_phosphateBinders">Phosphate binders</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="oralIron" class="med-check"> <span data-i18n="med_oralIron">Oral iron</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="potassiumBinders" class="med-check"> <span data-i18n="med_potassiumBinders">Potassium binders</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="diuretics" class="med-check"> <span data-i18n="med_diuretics">Diuretics</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="opioids" class="med-check"> <span data-i18n="med_opioids">Opioids</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="antihistamines" class="med-check"> <span data-i18n="med_antihistamines">Antihistamines</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="psychotropics" class="med-check"> <span data-i18n="med_psychotropics">Psychotropics</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="calciumChannel" class="med-check"> <span data-i18n="med_calciumChannel">Calcium channel blockers</span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-i18n="comorbLabel">Relevant Comorbidities</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" value="hyperkalemia" class="comorb-check"> <span data-i18n="comorb_hyperkalemia">Hyperkalemia</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="hyperphosphatemia" class="comorb-check"> <span data-i18n="comorb_hyperphosphatemia">Hyperphosphatemia</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="fluidRestriction" class="comorb-check"> <span data-i18n="comorb_fluidRestriction">Fluid restriction</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="diabetes" class="comorb-check"> <span data-i18n="comorb_diabetes">Diabetes mellitus</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="gastroparesis" class="comorb-check"> <span data-i18n="comorb_gastroparesis">Gastroparesis</span></label>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="runAssessment()" data-i18n="generateProtocol">▶ Generate Treatment Protocol</button>
+      <button class="btn btn-secondary" style="margin-top:.5rem;" onclick="goToStep(0)" data-i18n="backBtn">← Back</button>
+    </div>
+  </section>
+
+  <!-- STEP 2: NON-PHARM -->
+  <section class="step-content" id="step2">
+    <div class="card">
+      <h2 data-i18n="step2Title">🌿 Step 2 — Non-Pharmacologic Measures</h2>
+      <div class="alert alert-info" data-i18n="step2Intro"><strong>Always start here.</strong></div>
+      <h3 data-i18n="fiberTitle">Dietary Fiber</h3>
+      <ul>
+        <li data-i18n="fiberLi1">Maximize tolerated dietary fiber within K⁺/PO₄ restrictions (goal 20–38 g/day).</li>
+        <li data-i18n="fiberLi2">Low-K⁺ sources: apples, berries, cabbage, cauliflower, green beans, carrots, barley.</li>
+        <li data-i18n="fiberLi3">Ground flaxseed 1–2 tbsp/day.</li>
+      </ul>
+      <h3 data-i18n="fluidTitle">Fluid Optimization</h3>
+      <ul><li data-i18n="fluidLi">Optimize within prescribed restriction.</li></ul>
+      <h3 data-i18n="activityTitle">Physical Activity</h3>
+      <ul><li data-i18n="activityLi">Aim 30 min/day as tolerated.</li></ul>
+      <h3 data-i18n="habitsTitle">Bowel Habits</h3>
+      <ul><li data-i18n="habitsLi">Respond to urge; regular time every 1–2 days.</li></ul>
+      <h3 data-i18n="medReviewTitle">Medication Review</h3>
+      <div class="alert alert-warning" data-i18n="medReviewAlert">Minimize: phosphate binders, oral iron, potassium binders, diuretics, opioids, antihistamines, psychotropics, CCBs.</div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goToStep(1)" data-i18n="backBtn">← Back</button>
+        <button class="btn btn-primary" onclick="goToStep(3)" data-i18n="nextFirstLine">Next: First-Line →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3: FIRST-LINE -->
+  <section class="step-content" id="step3">
+    <div class="card">
+      <h2 data-i18n="step3Title">💊 Step 3 — First-Line Laxatives</h2>
+      <div class="alert alert-success" data-i18n="step3Intro"><strong>Safe in ESRD at unchanged doses:</strong> bisacodyl, docusate, senna, lactulose, PEG.</div>
+      <input type="text" class="table-search" id="drugSearch1" data-i18n-placeholder="searchPlaceholder" placeholder="🔍 Filter drug table...">
+      <table class="drug-table" id="drugTable1">
+        <thead><tr>
+          <th data-i18n="thAgent">Agent</th><th data-i18n="thClass">Class</th><th data-i18n="thDose">Starting Dose</th><th data-i18n="thOnset">Onset</th><th data-i18n="thRenal">Renal</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>Lactulose</strong></td><td data-i18n="clsOsmotic">Osmotic</td><td data-i18n="doseLactulose">15–30 mL PO daily/BID</td><td data-i18n="onset24_48">24–48 h</td><td><span class="badge badge-safe has-tooltip" data-tip-key="tipLactulose" tabindex="0" data-i18n="badgePreferred">Preferred</span></td></tr>
+          <tr><td><strong>PEG 3350</strong></td><td data-i18n="clsOsmotic">Osmotic</td><td data-i18n="dosePEG">17 g PO daily</td><td data-i18n="onset48_96">48–96 h</td><td><span class="badge badge-caution has-tooltip" data-tip-key="tipPEG" tabindex="0" data-i18n="badgeCaution">Caution*</span></td></tr>
+          <tr><td><strong>Docusate</strong></td><td data-i18n="clsSoftener">Softener</td><td data-i18n="doseDocusate">100–200 mg PO daily</td><td data-i18n="onset12_72">12–72 h</td><td><span class="badge badge-safe" tabindex="0" data-i18n="badgeSafe">Safe</span></td></tr>
+          <tr><td><strong>Senna</strong></td><td data-i18n="clsStimulant">Stimulant</td><td data-i18n="doseSenna">8.6–17.2 mg PO HS PRN</td><td data-i18n="onset6_12">6–12 h</td><td><span class="badge badge-safe" tabindex="0" data-i18n="badgeSafe">Safe</span></td></tr>
+          <tr><td><strong>Bisacodyl</strong></td><td data-i18n="clsStimulant">Stimulant</td><td data-i18n="doseBisacodyl">5–10 mg PO daily PRN</td><td data-i18n="onset6_12">6–12 h</td><td><span class="badge badge-safe" tabindex="0" data-i18n="badgeSafe">Safe</span></td></tr>
+        </tbody>
+      </table>
+      <div class="alert alert-warning" data-i18n="pegCaution"><strong>*PEG caution:</strong> avoid without physician supervision. Lactulose is most commonly used in advanced CKD.</div>
+      <div class="alert alert-danger"><strong data-i18n="dontUseTitle">🚫 Do NOT use in renal impairment:</strong>
+        <ul>
+          <li data-i18n="contraMg">Magnesium-containing laxatives (hypermagnesemia)</li>
+          <li data-i18n="contraPO4">Phosphate-containing laxatives (acute phosphate nephropathy)</li>
+          <li data-i18n="contraBulk">Bulk-forming agents (fluid restriction; polycarbophil adds calcium)</li>
+        </ul>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goToStep(2)" data-i18n="backBtn">← Back</button>
+        <button class="btn btn-primary" onclick="goToStep(4)" data-i18n="nextSecondLine">Next: Second-Line →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4: SECOND-LINE -->
+  <section class="step-content" id="step4">
+    <div class="card">
+      <h2 data-i18n="step4Title">🔬 Step 4 — Second-Line & Refractory</h2>
+      <h3 data-i18n="gccTitle">GC-C Agonists</h3>
+      <ul><li data-i18n="linaclotideLi"><strong>Linaclotide</strong> 72–145 μg daily</li><li data-i18n="plecanatideLi"><strong>Plecanatide</strong> 3 mg daily</li></ul>
+      <h3 data-i18n="ccTitle">Chloride Channel Activator</h3>
+      <ul><li data-i18n="lubiprostoneLi"><strong>Lubiprostone</strong> 24 μg BID</li></ul>
+      <h3 data-i18n="htTitle">5-HT₄ Agonist</h3>
+      <ul><li data-i18n="prucaloprideLi"><strong>Prucalopride</strong> — reduce to 1 mg daily in CKD</li></ul>
+      <h3 data-i18n="dualTitle">Dual-Benefit (Hyperphosphatemia + Constipation)</h3>
+      <div class="alert alert-success" data-i18n="tenapanorLi"><strong>Tenapanor</strong> — NHE3 inhibitor. FDA: 30 mg BID before meals; Japan: start 5 mg BID, titrate to 10–30 mg BID. Monitor diarrhea.</div>
+      <h3 data-i18n="rectalTitle">Rectal Therapies (PRN)</h3>
+      <ul><li data-i18n="rectalLi1">Glycerin or bisacodyl suppository PRN</li><li data-i18n="rectalLi2">Microlax enema — <strong>do NOT use Fleet enema</strong></li></ul>
+      <div class="alert alert-danger" data-i18n="noBMAlert"><strong>No BM ≥7 days:</strong> rule out fecal impaction / bowel obstruction.</div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goToStep(3)" data-i18n="backBtn">← Back</button>
+        <button class="btn btn-primary" onclick="goToStep(5)" data-i18n="nextSpecial">Next: Special →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 5: SPECIAL -->
+  <section class="step-content" id="step5">
+    <div class="card">
+      <h2 data-i18n="step5Title">👥 Step 5 — Special Populations</h2>
+      <button class="collapsible-header open" onclick="toggleCollapsible(this)" aria-expanded="true"><h3 data-i18n="pdTitle">🔄 Peritoneal Dialysis</h3><span class="arrow">▶</span></button>
+      <div class="collapsible-body open">
+        <div class="alert alert-danger" data-i18n="pdCritical"><strong>Critical:</strong> constipation → catheter migration / drainage failure.</div>
+        <ul><li data-i18n="pdLi1">Senna &amp; bisacodyl may be first-line.</li><li data-i18n="pdLi2">Consider synbiotics.</li><li data-i18n="pdLi3">Tenapanor for phosphate + constipation.</li></ul>
+      </div>
+      <button class="collapsible-header" onclick="toggleCollapsible(this)" aria-expanded="false"><h3 data-i18n="txTitle">🫀 Transplant Recipients</h3><span class="arrow">▶</span></button>
+      <div class="collapsible-body">
+        <ul><li data-i18n="txLi1">Diarrhea (mycophenolate) more common.</li><li data-i18n="txLi2">If constipated: docusate 200 mg BID → sennosides 24 mg BID or PEG 17 g daily.</li></ul>
+      </div>
+      <button class="collapsible-header" onclick="toggleCollapsible(this)" aria-expanded="false"><h3 data-i18n="pallTitle">🕊️ Palliative Renal</h3><span class="arrow">▶</span></button>
+      <div class="collapsible-body">
+        <ul><li data-i18n="pallLi1">Fentanyl preferred opioid (less constipation).</li><li data-i18n="pallLi2">Consider methylnaltrexone if refractory OIC.</li></ul>
+      </div>
+      <button class="collapsible-header" onclick="toggleCollapsible(this)" aria-expanded="false"><h3 data-i18n="hyperKTitle">⚠️ Hyperkalemia</h3><span class="arrow">▶</span></button>
+      <div class="collapsible-body">
+        <ul><li data-i18n="hyperKLi1">Constipation worsens hyperkalemia.</li><li data-i18n="hyperKLi2">Potassium binders may cause constipation.</li></ul>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goToStep(4)" data-i18n="backBtn">← Back</button>
+        <button class="btn btn-primary" onclick="goToStep(6)" data-i18n="nextSummary">Next: Summary →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 6: SUMMARY -->
+  <section class="step-content" id="step6">
+    <div class="card">
+      <h2 data-i18n="step6Title">📄 Step 6 — Personalized Summary</h2>
+      <div id="summaryContent"></div>
+      <div class="btn-group" style="margin-top:1.5rem;">
+        <button class="btn btn-secondary" onclick="goToStep(5)" data-i18n="backBtn">← Back</button>
+        <button class="btn btn-primary" onclick="copySummary()" data-i18n="copyBtn">📋 Copy</button>
+        <button class="btn btn-primary" onclick="exportSummaryPDF()" data-i18n="pdfBtn">📄 Export PDF</button>
+        <button class="btn btn-primary" onclick="window.print()" data-i18n="printBtn">🖨️ Print</button>
+      </div>
+      <button class="btn btn-secondary" style="margin-top:.5rem;" onclick="resetApp()" data-i18n="resetBtn">🔄 Start New Assessment</button>
+    </div>
+  </section>
+
+  <!-- STEP 7: ALGORITHM -->
+  <section class="step-content" id="step7">
+    <div class="card">
+      <h2 data-i18n="step7Title">📊 Step 7 — Stepwise Algorithm</h2>
+
+      <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" data-tab="chart" role="tab" data-i18n="tabDiagram">Diagram</button>
+        <button class="tab-btn" data-tab="text" role="tab" data-i18n="tabText">Text Version</button>
+      </div>
+
+      <div id="tab-chart">
+
+        <!-- VIEW MODE SELECTOR -->
+        <div class="view-modes">
+          <span class="view-modes-label">View:</span>
+          <button class="view-mode-btn active" data-view="css" id="viewCssBtn">📐 Flowchart</button>
+          <button class="view-mode-btn" data-view="canvas" id="viewCanvasBtn">🖼️ Canvas</button>
+          <button class="view-mode-btn" data-view="svg" id="viewSvgBtn">🖌️ SVG</button>
+        </div>
+
+        <!-- ============ CSS FLOWCHART (Safari-proof, always works) ============ -->
+        <div class="css-flow" id="cssFlow">
+          <div class="cf-node cf-start" data-i18n="flowStart">Patient with CKD + Constipation</div>
+          <div class="cf-arrow">↓</div>
+
+          <div class="cf-decision">❓ <span data-i18n="flowRedFlags">Red Flags?</span>
+            <div class="cf-hint" data-i18n="flowRedFlagsSub">No BM &gt;7d · obstruction · bleeding</div>
+          </div>
+          <div class="cf-branch-row">
+            <div class="cf-branch cf-branch-yes">
+              <div class="cf-branch-label" data-i18n="flowYes">Yes</div>
+              <div class="cf-node cf-urgent">
+                <span data-i18n="flowUrgent1">🚨 Rule out impaction / obstruction</span>
+                <span class="cf-small" data-i18n="flowUrgent2">urgent referral</span>
+              </div>
+            </div>
+            <div class="cf-branch cf-branch-no">
+              <div class="cf-branch-label" data-i18n="flowNo">No</div>
+              <div class="cf-node" data-i18n="flowStep1">Step 1: Non-Pharmacologic</div>
+              <div class="cf-small" data-i18n="flowStep1Sub">Fiber · fluid · activity · bowel habits · med review</div>
+            </div>
+          </div>
+
+          <div class="cf-arrow">↓</div>
+          <div class="cf-decision">❓ <span data-i18n="flowImproved">Improved?</span></div>
+          <div class="cf-branch-row">
+            <div class="cf-branch cf-branch-yes">
+              <div class="cf-branch-label" data-i18n="flowYes">Yes</div>
+              <div class="cf-node cf-goal">
+                <span data-i18n="flowMaintain">✅ Maintain</span>
+                <span class="cf-small" data-i18n="flowMaintainSub">Goal: BM q1–2 days</span>
+              </div>
+            </div>
+            <div class="cf-branch cf-branch-no">
+              <div class="cf-branch-label" data-i18n="flowNo">No</div>
+              <div class="cf-node" data-i18n="flowStep2">Step 2: First-Line</div>
+              <div class="cf-small" data-i18n="flowStep2Sub">Lactulose ± docusate / senna / bisacodyl</div>
+            </div>
+          </div>
+
+          <div class="cf-arrow">↓</div>
+          <div class="cf-decision">❓ <span data-i18n="flowBM3">BM within 3 days?</span></div>
+          <div class="cf-branch-row">
+            <div class="cf-branch cf-branch-yes">
+              <div class="cf-branch-label" data-i18n="flowYes">Yes</div>
+              <div class="cf-node cf-goal" data-i18n="flowMaintain">✅ Maintain</div>
+            </div>
+            <div class="cf-branch cf-branch-no">
+              <div class="cf-branch-label" data-i18n="flowNo">No</div>
+              <div class="cf-node" data-i18n="flowStep3">Step 3: Second-Line</div>
+              <div class="cf-small" data-i18n="flowStep3Sub">Linaclotide · plecanatide · lubiprostone · prucalopride (1 mg)</div>
+            </div>
+          </div>
+
+          <div class="cf-arrow">↓</div>
+          <div class="cf-decision">❓ <span data-i18n="flowHyperP">Hyperphosphatemia?</span></div>
+          <div class="cf-branch-row">
+            <div class="cf-branch cf-branch-yes">
+              <div class="cf-branch-label" data-i18n="flowYes">Yes</div>
+              <div class="cf-node cf-dual">
+                <span data-i18n="flowTenapanor">💊 Add Tenapanor</span>
+                <span class="cf-small" data-i18n="flowDualSub">dual benefit</span>
+              </div>
+            </div>
+            <div class="cf-branch cf-branch-no">
+              <div class="cf-branch-label" data-i18n="flowNo">No</div>
+            </div>
+          </div>
+
+          <div class="cf-arrow">↓</div>
+          <div class="cf-node cf-urgent" data-i18n="flowRefractory">Refractory → rectal PRN + refer</div>
+        </div>
+
+        <!-- ============ CANVAS DIAGRAM ============ -->
+        <div id="canvasWrap" class="hidden">
+          <canvas id="algorithmCanvas" width="700" height="950" style="max-width:100%;height:auto;display:block;margin:0 auto;"></canvas>
+        </div>
+
+        <!-- ============ SVG DIAGRAM ============ -->
+        <div class="mermaid-wrap hidden" id="svgWrap">
+          <svg class="flowchart-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 880" width="640" height="880" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="flow-arrow"/></marker>
+              <marker id="arrowUrgent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+            </defs>
+            <rect class="flow-node flow-start" x="220" y="20" width="200" height="50" rx="25"/>
+            <text class="flow-label flow-label-light" x="320" y="50" data-i18n="flowStart">Patient with CKD + Constipation</text>
+            <polygon class="flow-node flow-box" points="320,100 490,150 320,200 150,150"/>
+            <text class="flow-label" x="320" y="145" data-i18n="flowRedFlags">Red Flags?</text>
+            <text class="flow-label" x="320" y="162" style="font-size:10px;font-weight:400;" data-i18n="flowRedFlagsSub">No BM &gt;7d · obstruction · bleeding</text>
+            <line x1="490" y1="150" x2="560" y2="150" class="flow-line-urgent" marker-end="url(#arrowUrgent)"/>
+            <text x="500" y="140" style="font-size:10px;fill:#c0392b;font-weight:600;" data-i18n="flowYes">Yes</text>
+            <rect class="flow-node flow-urgent" x="430" y="220" width="190" height="70" rx="8"/>
+            <text class="flow-label" x="525" y="245" style="fill:#c0392b;" data-i18n="flowUrgent1">🚨 Rule out impaction/</text>
+            <text class="flow-label" x="525" y="262" style="fill:#c0392b;" data-i18n="flowUrgent2">obstruction · urgent referral</text>
+            <line x1="560" y1="150" x2="525" y2="220" class="flow-line-urgent" marker-end="url(#arrowUrgent)"/>
+            <line x1="320" y1="200" x2="320" y2="240" class="flow-line" marker-end="url(#arrow)"/>
+            <text x="330" y="225" style="font-size:10px;fill:#5d6d7e;font-weight:600;" data-i18n="flowNo">No</text>
+            <rect class="flow-node flow-box" x="180" y="240" width="280" height="70" rx="8"/>
+            <text class="flow-label" x="320" y="265" data-i18n="flowStep1">Step 1: Non-Pharmacologic</text>
+            <text class="flow-label" x="320" y="282" style="font-size:10px;font-weight:400;" data-i18n="flowStep1Sub">Fiber · fluid · activity · bowel habits · med review</text>
+            <line x1="320" y1="310" x2="320" y2="340" class="flow-line" marker-end="url(#arrow)"/>
+            <polygon class="flow-node flow-box" points="320,340 440,380 320,420 200,380"/>
+            <text class="flow-label" x="320" y="384" data-i18n="flowImproved">Improved?</text>
+            <line x1="440" y1="380" x2="560" y2="380" class="flow-line" marker-end="url(#arrow)"/>
+            <text x="470" y="370" style="font-size:10px;fill:#1e8449;font-weight:600;" data-i18n="flowYes">Yes</text>
+            <rect class="flow-node flow-goal" x="440" y="345" width="180" height="70" rx="8"/>
+            <text class="flow-label" x="530" y="370" style="fill:#1e8449;" data-i18n="flowMaintain">✅ Maintain</text>
+            <text class="flow-label" x="530" y="387" style="font-size:10px;font-weight:400;fill:#1e8449;" data-i18n="flowMaintainSub">Goal: BM q1–2 days</text>
+            <line x1="320" y1="420" x2="320" y2="450" class="flow-line" marker-end="url(#arrow)"/>
+            <text x="330" y="440" style="font-size:10px;fill:#5d6d7e;font-weight:600;" data-i18n="flowNo">No</text>
+            <rect class="flow-node flow-box" x="180" y="450" width="280" height="60" rx="8"/>
+            <text class="flow-label" x="320" y="473" data-i18n="flowStep2">Step 2: First-Line</text>
+            <text class="flow-label" x="320" y="490" style="font-size:10px;font-weight:400;" data-i18n="flowStep2Sub">Lactulose ± docusate / senna / bisacodyl</text>
+            <line x1="320" y1="510" x2="320" y2="540" class="flow-line" marker-end="url(#arrow)"/>
+            <polygon class="flow-node flow-box" points="320,540 460,580 320,620 180,580"/>
+            <text class="flow-label" x="320" y="584" data-i18n="flowBM3">BM within 3 days?</text>
+            <path d="M 460 580 L 620 580 L 620 380 L 620 380" class="flow-line" marker-end="url(#arrow)"/>
+            <text x="470" y="570" style="font-size:10px;fill:#1e8449;font-weight:600;" data-i18n="flowYes">Yes</text>
+            <line x1="320" y1="620" x2="320" y2="650" class="flow-line" marker-end="url(#arrow)"/>
+            <text x="330" y="640" style="font-size:10px;fill:#c0392b;font-weight:600;" data-i18n="flowNo">No</text>
+            <rect class="flow-node flow-box" x="150" y="650" width="340" height="70" rx="8"/>
+            <text class="flow-label" x="320" y="675" data-i18n="flowStep3">Step 3: Second-Line</text>
+            <text class="flow-label" x="320" y="692" style="font-size:10px;font-weight:400;" data-i18n="flowStep3Sub">Linaclotide · plecanatide · lubiprostone · prucalopride (1 mg)</text>
+            <line x1="320" y1="720" x2="320" y2="750" class="flow-line" marker-end="url(#arrow)"/>
+            <polygon class="flow-node flow-box" points="320,750 450,785 320,820 190,785"/>
+            <text class="flow-label" x="320" y="789" data-i18n="flowHyperP">Hyperphosphatemia?</text>
+            <line x1="450" y1="785" x2="540" y2="785" class="flow-line" marker-end="url(#arrow)"/>
+            <text x="470" y="775" style="font-size:10px;fill:#e67e22;font-weight:600;" data-i18n="flowYes">Yes</text>
+            <rect class="flow-node flow-dual" x="440" y="755" width="190" height="60" rx="8"/>
+            <text class="flow-label" x="535" y="780" style="fill:#b7950b;" data-i18n="flowTenapanor">💊 Add Tenapanor</text>
+            <text class="flow-label" x="535" y="797" style="font-size:10px;font-weight:400;fill:#b7950b;" data-i18n="flowDualSub">dual benefit</text>
+            <line x1="320" y1="820" x2="320" y2="850" class="flow-line" marker-end="url(#arrow)"/>
+            <rect class="flow-node flow-urgent" x="200" y="850" width="240" height="40" rx="8"/>
+            <text class="flow-label" x="320" y="875" style="fill:#c0392b;" data-i18n="flowRefractory">Refractory → rectal PRN + refer</text>
+          </svg>
+        </div>
+
+        <!-- ============ MERMAID (optional enhanced) ============ -->
+        <div id="mermaidContainer" class="hidden">
+          <div class="mermaid" id="mermaidChart">
+flowchart TD
+    A["Patient with CKD + Constipation"] --> B{"Red Flags?"}
+    B -->|Yes| C["Rule out impaction / obstruction"]
+    B -->|No| D["Step 1: Non-Pharmacologic"]
+    D --> E{"Improved?"}
+    E -->|Yes| F["Maintain · Goal BM q1-2 days"]
+    E -->|No| G["Step 2: First-Line"]
+    G --> H{"BM within 3 days?"}
+    H -->|Yes| F
+    H -->|No| I["Step 3: Second-Line"]
+    I --> J{"Hyperphosphatemia?"}
+    J -->|Yes| K["Add Tenapanor"]
+    J -->|No| L{"Still refractory?"}
+    K --> L
+    L -->|Yes| M["Rectal PRN + specialist referral"]
+    L -->|No| F
+    style A fill:#1a5276,color:#fff
+    style C fill:#c0392b,color:#fff
+    style F fill:#1e8449,color:#fff
+    style K fill:#e67e22,color:#fff
+          </div>
+        </div>
+
+        <p style="font-size:0.75rem;color:var(--text-light);text-align:center;margin-top:0.5rem;" id="diagramStatus" data-i18n="diagramStatus">📌 Diagram shown.</p>
+
+        <div style="text-align:center;margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm" onclick="tryRenderMermaid()" id="mermaidBtn" data-i18n="renderMermaidBtn">🔁 Render Enhanced</button>
+          <button class="btn btn-secondary btn-sm" onclick="exportDiagramPNG()" data-i18n="exportPngBtn">📥 PNG</button>
+          <button class="btn btn-secondary btn-sm" onclick="exportDiagramSVG()" data-i18n="exportSvgBtn">📐 SVG</button>
+        </div>
+      </div>
+
+      <div id="tab-text" class="hidden">
+        <h3 data-i18n="textVersionTitle">Stepwise Pathway (Text)</h3>
+        <ol>
+          <li data-i18n="textLi1"><strong>Red Flag Screening</strong> — any alarm → urgent evaluation.</li>
+          <li data-i18n="textLi2"><strong>Non-Pharmacologic</strong> — fiber, fluid, activity, bowel habits, med review.</li>
+          <li data-i18n="textLi3"><strong>First-Line</strong> — lactulose ± docusate/senna/bisacodyl (avoid Mg²⁺ &amp; PO₄).</li>
+          <li data-i18n="textLi4"><strong>Second-Line</strong> — linaclotide, plecanatide, lubiprostone, prucalopride (1 mg in CKD).</li>
+          <li data-i18n="textLi5"><strong>Dual-Benefit</strong> — add tenapanor if hyperphosphatemia present.</li>
+          <li data-i18n="textLi6"><strong>Refractory</strong> — rectal therapies PRN + specialist referral.</li>
+        </ol>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goToStep(6)" data-i18n="backSummary">← Back to Summary</button>
+        <button class="btn btn-primary" onclick="printFullProtocol()" data-i18n="printFullBtn">🖨️ Print Full Protocol</button>
+      </div>
+      <button class="btn btn-secondary" style="margin-top:.5rem;" onclick="goToStep(1)" data-i18n="editAssessment">Edit Assessment</button>
+    </div>
+  </section>
+
+</div>
+
+<div id="printAllContainer"></div>
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<footer class="app-footer">
+  <p data-i18n="disclaimer"><strong>Disclaimer:</strong> Educational / clinical decision support only. Individualize therapy.</p>
+  <p style="margin-top:.4rem;" data-i18n="references">Based on: Cha RR et al. J Neurogastroenterol Motil. 2023;29(4):428-435; BC Renal Agency; KDIGO; AGA.</p>
+  <p class="version-stamp">Protocol v3.2 · Last updated: 2026</p>
+</footer>
+
+<script>
+/* ============================================================
+   TRANSLATIONS — EN, FR, ZH, ES
+   ============================================================ */
+const translations = {
+  en: {
+    appTitle:"🫘 CKD Constipation Management", appSubtitle:"Interactive stepwise protocol · v3.2",
+    step0Nav:"1. Red Flags", step1Nav:"2. Assess", step2Nav:"3. Non-Rx", step3Nav:"4. First-Line",
+    step4Nav:"5. Second-Line", step5Nav:"6. Special", step6Nav:"7. Summary", step7Nav:"📊 Algorithm",
+    step0Title:"🚨 Step 0 — Red Flag Screening",
+    step0Intro:"Screen for alarm features before initiating laxative therapy.",
+    durationLabel:"Duration of current constipation",
+    selectPlaceholder:"Select...",
+    durAcute:"Acute (<4 weeks)", durSubacute:"Subacute (4–12 weeks)", durChronic:"Chronic (>12 weeks)",
+    lastBMLabel:"Date of last bowel movement (optional)",
+    redFlagsLabel:"Alarm / Red-Flag Features",
+    rf_noBM7:"No bowel movement >7 days", rf_obstruction:"Signs of obstruction",
+    rf_rectalBleeding:"Rectal bleeding / melena", rf_weightLoss:"Unexplained weight loss",
+    rf_anemia:"Iron-deficiency anemia", rf_fhxColon:"Family history of colon cancer",
+    rf_newOnset50:"New-onset constipation >50 years",
+    continueToAssess:"Continue to Assessment →",
+    step1Title:"📋 Step 1 — Patient Assessment",
+    ckdStageLabel:"CKD Stage / Dialysis Status",
+    ckd3:"CKD Stage 3 (eGFR 30–59)", ckd4:"CKD Stage 4 (eGFR 15–29)",
+    ckd5:"CKD Stage 5 (eGFR <15, not on dialysis)", hd:"Hemodialysis (HD)",
+    pd:"Peritoneal Dialysis (PD)", transplant:"Kidney Transplant Recipient",
+    bristolLabel:"Bristol Stool Form Scale",
+    bs1:"Hard lumps", bs2:"Lumpy sausage", bs3:"Cracked sausage", bs4:"Smooth & soft",
+    bs5:"Soft blobs", bs6:"Fluffy", bs7:"Watery",
+    bmFreqLabel:"Bowel Movement Frequency",
+    freqDaily:"Daily or every 1–2 days", freqEvery3:"Every 3–4 days",
+    freqEvery5:"Every 5–6 days", freqLess7:"Less than once per week",
+    currentLaxLabel:"Current Laxative Regimen",
+    laxNone:"None / not documented", laxMultiple:"Multiple agents", laxOther:"Other",
+    medsLabel:"Contributing Medications",
+    med_phosphateBinders:"Phosphate binders", med_oralIron:"Oral iron",
+    med_potassiumBinders:"Potassium binders", med_diuretics:"Diuretics",
+    med_opioids:"Opioids", med_antihistamines:"Antihistamines",
+    med_psychotropics:"Psychotropics", med_calciumChannel:"Calcium channel blockers",
+    comorbLabel:"Relevant Comorbidities",
+    comorb_hyperkalemia:"Hyperkalemia", comorb_hyperphosphatemia:"Hyperphosphatemia",
+    comorb_fluidRestriction:"Fluid restriction", comorb_diabetes:"Diabetes mellitus",
+    comorb_gastroparesis:"Gastroparesis",
+    generateProtocol:"▶ Generate Treatment Protocol", backBtn:"← Back",
+    nextFirstLine:"Next: First-Line →", nextSecondLine:"Next: Second-Line →",
+    nextSpecial:"Next: Special →", nextSummary:"Next: Summary →", backSummary:"← Back to Summary",
+    step2Title:"🌿 Step 2 — Non-Pharmacologic Measures",
+    step2Intro:"<strong>Always start here.</strong>",
+    fiberTitle:"Dietary Fiber", fluidTitle:"Fluid Optimization", activityTitle:"Physical Activity",
+    habitsTitle:"Bowel Habits", medReviewTitle:"Medication Review",
+    fiberLi1:"Maximize tolerated dietary fiber within K⁺/PO₄ restrictions (goal 20–38 g/day).",
+    fiberLi2:"Low-K⁺ sources: apples, berries, cabbage, cauliflower, green beans, carrots, barley.",
+    fiberLi3:"Ground flaxseed 1–2 tbsp/day.",
+    fluidLi:"Optimize within prescribed restriction.",
+    activityLi:"Aim 30 min/day as tolerated.",
+    habitsLi:"Respond to urge; regular time every 1–2 days.",
+    medReviewAlert:"Minimize: phosphate binders, oral iron, potassium binders, diuretics, opioids, antihistamines, psychotropics, CCBs.",
+    step3Title:"💊 Step 3 — First-Line Laxatives",
+    step3Intro:"<strong>Safe in ESRD at unchanged doses:</strong> bisacodyl, docusate, senna, lactulose, PEG.",
+    searchPlaceholder:"🔍 Filter drug table...",
+    thAgent:"Agent", thClass:"Class", thDose:"Starting Dose", thOnset:"Onset", thRenal:"Renal",
+    clsOsmotic:"Osmotic", clsSoftener:"Softener", clsStimulant:"Stimulant",
+    doseLactulose:"15–30 mL PO daily/BID", dosePEG:"17 g PO daily",
+    doseDocusate:"100–200 mg PO daily", doseSenna:"8.6–17.2 mg PO HS PRN",
+    doseBisacodyl:"5–10 mg PO daily PRN",
+    onset24_48:"24–48 h", onset48_96:"48–96 h", onset12_72:"12–72 h", onset6_12:"6–12 h",
+    badgePreferred:"Preferred", badgeCaution:"Caution*", badgeSafe:"Safe",
+    tipLactulose:"Preferred first-line in advanced CKD/ESRD.",
+    tipPEG:"Water volume may be problematic under fluid restriction.",
+    pegCaution:"<strong>*PEG caution:</strong> avoid without physician supervision. Lactulose is most commonly used in advanced CKD.",
+    dontUseTitle:"🚫 Do NOT use in renal impairment:",
+    contraMg:"Magnesium-containing laxatives (hypermagnesemia)",
+    contraPO4:"Phosphate-containing laxatives (acute phosphate nephropathy)",
+    contraBulk:"Bulk-forming agents (fluid restriction; polycarbophil adds calcium)",
+    step4Title:"🔬 Step 4 — Second-Line & Refractory",
+    gccTitle:"GC-C Agonists", ccTitle:"Chloride Channel Activator", htTitle:"5-HT₄ Agonist",
+    dualTitle:"Dual-Benefit (Hyperphosphatemia + Constipation)",
+    rectalTitle:"Rectal Therapies (PRN)",
+    linaclotideLi:"<strong>Linaclotide</strong> 72–145 μg daily",
+    plecanatideLi:"<strong>Plecanatide</strong> 3 mg daily",
+    lubiprostoneLi:"<strong>Lubiprostone</strong> 24 μg BID",
+    prucaloprideLi:"<strong>Prucalopride</strong> — reduce to 1 mg daily in CKD",
+    tenapanorLi:"<strong>Tenapanor</strong> — NHE3 inhibitor. FDA: 30 mg BID before meals; Japan: start 5 mg BID, titrate to 10–30 mg BID. Monitor diarrhea.",
+    rectalLi1:"Glycerin or bisacodyl suppository PRN",
+    rectalLi2:"Microlax enema — <strong>do NOT use Fleet enema</strong>",
+    noBMAlert:"<strong>No BM ≥7 days:</strong> rule out fecal impaction / bowel obstruction.",
+    step5Title:"👥 Step 5 — Special Populations",
+    pdTitle:"🔄 Peritoneal Dialysis", txTitle:"🫀 Transplant Recipients",
+    pallTitle:"🕊️ Palliative Renal", hyperKTitle:"⚠️ Hyperkalemia",
+    pdCritical:"<strong>Critical:</strong> constipation → catheter migration / drainage failure.",
+    pdLi1:"Senna & bisacodyl may be first-line.", pdLi2:"Consider synbiotics.",
+    pdLi3:"Tenapanor for phosphate + constipation.",
+    txLi1:"Diarrhea (mycophenolate) more common.",
+    txLi2:"If constipated: docusate 200 mg BID → sennosides 24 mg BID or PEG 17 g daily.",
+    pallLi1:"Fentanyl preferred opioid (less constipation).",
+    pallLi2:"Consider methylnaltrexone if refractory OIC.",
+    hyperKLi1:"Constipation worsens hyperkalemia.", hyperKLi2:"Potassium binders may cause constipation.",
+    step6Title:"📄 Step 6 — Personalized Summary",
+    copyBtn:"📋 Copy", pdfBtn:"📄 Export PDF", printBtn:"🖨️ Print", resetBtn:"🔄 Start New Assessment",
+    step7Title:"📊 Step 7 — Stepwise Algorithm",
+    tabDiagram:"Diagram", tabText:"Text Version",
+    diagramStatus:"📌 Diagram shown.",
+    renderMermaidBtn:"🔁 Render Enhanced",
+    exportPngBtn:"📥 PNG", exportSvgBtn:"📐 SVG",
+    printFullBtn:"🖨️ Print Full Protocol", editAssessment:"Edit Assessment",
+    textVersionTitle:"Stepwise Pathway (Text)",
+    textLi1:"<strong>Red Flag Screening</strong> — any alarm → urgent evaluation.",
+    textLi2:"<strong>Non-Pharmacologic</strong> — fiber, fluid, activity, bowel habits, med review.",
+    textLi3:"<strong>First-Line</strong> — lactulose ± docusate/senna/bisacodyl (avoid Mg²⁺ & PO₄).",
+    textLi4:"<strong>Second-Line</strong> — linaclotide, plecanatide, lubiprostone, prucalopride (1 mg in CKD).",
+    textLi5:"<strong>Dual-Benefit</strong> — add tenapanor if hyperphosphatemia present.",
+    textLi6:"<strong>Refractory</strong> — rectal therapies PRN + specialist referral.",
+    disclaimer:"<strong>Disclaimer:</strong> Educational / clinical decision support only. Individualize therapy.",
+    references:"Based on: Cha RR et al. J Neurogastroenterol Motil. 2023;29(4):428-435; BC Renal Agency; KDIGO; AGA.",
+    flowStart:"Patient with CKD + Constipation", flowRedFlags:"Red Flags?",
+    flowRedFlagsSub:"No BM >7d · obstruction · bleeding",
+    flowUrgent1:"🚨 Rule out impaction / obstruction", flowUrgent2:"urgent referral",
+    flowStep1:"Step 1: Non-Pharmacologic", flowStep1Sub:"Fiber · fluid · activity · bowel habits · med review",
+    flowImproved:"Improved?", flowMaintain:"✅ Maintain", flowMaintainSub:"Goal: BM q1–2 days",
+    flowStep2:"Step 2: First-Line", flowStep2Sub:"Lactulose ± docusate / senna / bisacodyl",
+    flowBM3:"BM within 3 days?", flowStep3:"Step 3: Second-Line",
+    flowStep3Sub:"Linaclotide · plecanatide · lubiprostone · prucalopride (1 mg)",
+    flowHyperP:"Hyperphosphatemia?", flowTenapanor:"💊 Add Tenapanor", flowDualSub:"dual benefit",
+    flowRefractory:"Refractory → rectal PRN + refer",
+    flowYes:"Yes", flowNo:"No",
+    sumUrgent:"🚨 URGENT: Red flag(s) present — rule out impaction / obstruction.",
+    sumPatientProfile:"Patient Profile", sumRenalStatus:"Renal Status", sumStoolType:"Stool Type",
+    sumBMFreq:"BM Frequency", sumDuration:"Duration", sumSeverityScore:"Severity Score",
+    sumSeverity:"Severity",
+    sumContribMeds:"Contributing Medications", sumComorbid:"Comorbidities",
+    sumRecommended:"Recommended Protocol",
+    sumNonPharm:"<strong>Non-pharmacologic:</strong> Fiber 20–38 g/day within K⁺/PO₄ limits, fluid optimization, 30 min/day activity, regular bowel habits, medication review.",
+    sumFirstLineMild:"<strong>First-line:</strong> Lactulose 15–30 mL daily or PEG 17 g daily (caution: fluid). Docusate only if hard stool.",
+    sumFirstLineSevere:"<strong>First-line:</strong> Lactulose 15–30 mL PO daily–BID. Add senna 8.6–17.2 mg HS PRN or bisacodyl 5–10 mg PRN. Avoid Mg²⁺/PO₄ laxatives.",
+    sumSecondLine:"<strong>Second-line:</strong> Linaclotide 72–145 μg daily, plecanatide 3 mg daily, lubiprostone 24 μg BID, or prucalopride 1 mg daily (CKD dose).",
+    sumDualBenefit:"<strong>Dual-benefit:</strong> Tenapanor — FDA 30 mg BID; Japan start 5 mg BID titrate to 30 mg BID.",
+    sumPD:"<strong>PD-specific:</strong> Constipation → catheter migration risk. Consider synbiotics.",
+    sumTx:"<strong>Transplant-specific:</strong> Docusate 200 mg BID → sennosides 24 mg BID or PEG 17 g daily.",
+    sumRescue:"<strong>Rescue:</strong> No BM ≥3 days → second-line. No BM ≥7 days → rule out impaction. Rectal PRN only. Avoid Fleet enema.",
+    sumMaintenance:"Maintenance Goals",
+    sumMaintLi1:"Target BM every 1–2 days (Bristol 3–4).",
+    sumMaintLi2:"Titrate scheduled laxatives.",
+    sumMaintLi3:"Monitor K⁺ — constipation worsens potassium absorption.",
+    sumMaintLi4:"Reassess at each visit.",
+    sumContra:"🚫 Contraindicated in CKD: Mg²⁺ laxatives, PO₄ laxatives, bulk-forming agents.",
+    stageCKD3:"CKD Stage 3", stageCKD4:"CKD Stage 4", stageCKD5:"CKD Stage 5",
+    stageHD:"Hemodialysis (HD)", stagePD:"Peritoneal Dialysis (PD)", stageTx:"Kidney Transplant Recipient",
+    bristolD1:"Type 1 — Hard lumps", bristolD2:"Type 2 — Lumpy sausage",
+    bristolD3:"Type 3 — Cracked sausage", bristolD4:"Type 4 — Smooth & soft (normal)",
+    bristolD5:"Type 5 — Soft blobs", bristolD6:"Type 6 — Fluffy", bristolD7:"Type 7 — Watery",
+    freqLabelDaily:"Daily or every 1–2 days", freqLabelEvery3:"Every 3–4 days",
+    freqLabelEvery5:"Every 5–6 days", freqLabelLess7:"Less than once per week",
+    durLabelAcute:"Acute (<4 weeks)", durLabelSubacute:"Subacute (4–12 weeks)", durLabelChronic:"Chronic (>12 weeks)",
+    notSpecified:"Not specified", notAssessed:"Not assessed",
+    sevUrgent:"Urgent — Refer", sevSevere:"Severe", sevModerate:"Moderate", sevMild:"Mild",
+    sevChartTitle:"Severity Score", sevChartScore:"Score", sevChartOf:"of",
+    sevChartFactors:"Contributing factors:",
+    sevFactorBristol:"Bristol type", sevFactorFreq:"Frequency",
+    sevFactorDuration:"Chronic duration", sevFactorUrgent:"Urgent red flag",
+    sevFactorNone:"No major contributing factors",
+    printAllTitle:"CKD Constipation Management — Full Protocol",
+    printAllSubtitle:"Complete stepwise pathway for chronic kidney disease",
+    toastCopied:"✅ Summary copied!", toastPngDone:"✅ PNG downloaded!",
+    toastSvgDone:"✅ SVG downloaded!", toastPdfDone:"✅ PDF exported!",
+    toastNoDiagram:"⚠️ No diagram found to export.",
+    toastPdfFail:"⚠️ PDF library not available — using print dialog instead.",
+    toastLangSet:"🌐 Language updated.",
+    toastDiagramReloaded:"✅ Diagram reloaded."
+  },
+  fr: {
+    appTitle:"🫘 Gestion de la constipation dans la MRC",
+    appSubtitle:"Protocole interactif par étapes · v3.2",
+    step0Nav:"1. Signaux", step1Nav:"2. Évaluation", step2Nav:"3. Non-méd.",
+    step3Nav:"4. 1ʳᵉ ligne", step4Nav:"5. 2ᵉ ligne", step5Nav:"6. Spécial",
+    step6Nav:"7. Résumé", step7Nav:"📊 Algorithme",
+    step0Title:"🚨 Étape 0 — Dépistage des signaux d'alarme",
+    step0Intro:"Rechercher les signes d'alarme avant d'initier un laxatif.",
+    durationLabel:"Durée de la constipation actuelle",
+    selectPlaceholder:"Sélectionner...",
+    durAcute:"Aiguë (<4 semaines)", durSubacute:"Subaiguë (4–12 semaines)", durChronic:"Chronique (>12 semaines)",
+    lastBMLabel:"Date de la dernière selle (facultatif)",
+    redFlagsLabel:"Signes d'alarme",
+    rf_noBM7:"Aucune selle >7 jours", rf_obstruction:"Signes d'occlusion",
+    rf_rectalBleeding:"Saignement rectal / méléna", rf_weightLoss:"Perte de poids inexpliquée",
+    rf_anemia:"Anémie ferriprive", rf_fhxColon:"Antécédents familiaux de cancer du côlon",
+    rf_newOnset50:"Constipation d'apparition récente >50 ans",
+    continueToAssess:"Continuer vers l'évaluation →",
+    step1Title:"📋 Étape 1 — Évaluation du patient",
+    ckdStageLabel:"Stade MRC / Dialyse",
+    ckd3:"MRC stade 3 (DFGe 30–59)", ckd4:"MRC stade 4 (DFGe 15–29)",
+    ckd5:"MRC stade 5 (DFGe <15, sans dialyse)", hd:"Hémodialyse (HD)",
+    pd:"Dialyse péritonéale (DP)", transplant:"Greffé rénal",
+    bristolLabel:"Échelle de Bristol",
+    bs1:"Grumeaux durs", bs2:"Saucisse grumeleuse", bs3:"Saucisse fissurée", bs4:"Lisse et molle",
+    bs5:"Morceaux mous", bs6:"Mousseux", bs7:"Aqueux",
+    bmFreqLabel:"Fréquence des selles",
+    freqDaily:"Quotidienne ou tous les 1–2 jours", freqEvery3:"Tous les 3–4 jours",
+    freqEvery5:"Tous les 5–6 jours", freqLess7:"Moins d'une fois par semaine",
+    currentLaxLabel:"Traitement laxatif actuel",
+    laxNone:"Aucun / non documenté", laxMultiple:"Plusieurs agents", laxOther:"Autre",
+    medsLabel:"Médicaments contributifs",
+    med_phosphateBinders:"Chélateurs de phosphate", med_oralIron:"Fer oral",
+    med_potassiumBinders:"Chélateurs de potassium", med_diuretics:"Diurétiques",
+    med_opioids:"Opioïdes", med_antihistamines:"Antihistaminiques",
+    med_psychotropics:"Psychotropes", med_calciumChannel:"Inhibiteurs calciques",
+    comorbLabel:"Comorbidités pertinentes",
+    comorb_hyperkalemia:"Hyperkaliémie", comorb_hyperphosphatemia:"Hyperphosphatémie",
+    comorb_fluidRestriction:"Restriction hydrique", comorb_diabetes:"Diabète",
+    comorb_gastroparesis:"Gastroparésie",
+    generateProtocol:"▶ Générer le protocole", backBtn:"← Retour",
+    nextFirstLine:"Suivant : 1ʳᵉ ligne →", nextSecondLine:"Suivant : 2ᵉ ligne →",
+    nextSpecial:"Suivant : Spécial →", nextSummary:"Suivant : Résumé →", backSummary:"← Retour au résumé",
+    step2Title:"🌿 Étape 2 — Mesures non pharmacologiques",
+    step2Intro:"<strong>Toujours commencer ici.</strong>",
+    fiberTitle:"Fibres alimentaires", fluidTitle:"Optimisation hydrique",
+    activityTitle:"Activité physique", habitsTitle:"Habitudes intestinales",
+    medReviewTitle:"Révision des médicaments",
+    fiberLi1:"Maximiser les fibres tolérées dans les limites K⁺/PO₄ (objectif 20–38 g/j).",
+    fiberLi2:"Sources pauvres en K⁺ : pommes, baies, chou, chou-fleur, haricots verts, carottes, orge.",
+    fiberLi3:"Graines de lin moulues 1–2 c. à soupe/j.",
+    fluidLi:"Optimiser dans la limite prescrite.",
+    activityLi:"Viser 30 min/j selon tolérance.",
+    habitsLi:"Répondre à l'urgence ; horaire régulier tous les 1–2 jours.",
+    medReviewAlert:"Minimiser : chélateurs de phosphate, fer oral, chélateurs de potassium, diurétiques, opioïdes, antihistaminiques, psychotropes, IC.",
+    step3Title:"💊 Étape 3 — Laxatifs de première ligne",
+    step3Intro:"<strong>Sûrs en IRT à doses inchangées :</strong> bisacodyl, docusate, senna, lactulose, PEG.",
+    searchPlaceholder:"🔍 Filtrer le tableau...",
+    thAgent:"Agent", thClass:"Classe", thDose:"Dose initiale", thOnset:"Délai", thRenal:"Rénal",
+    clsOsmotic:"Osmotique", clsSoftener:"Émollient", clsStimulant:"Stimulant",
+    doseLactulose:"15–30 mL PO/j ou 2×/j", dosePEG:"17 g PO/j",
+    doseDocusate:"100–200 mg PO/j", doseSenna:"8,6–17,2 mg PO au coucher PRN",
+    doseBisacodyl:"5–10 mg PO/j PRN",
+    onset24_48:"24–48 h", onset48_96:"48–96 h", onset12_72:"12–72 h", onset6_12:"6–12 h",
+    badgePreferred:"Préféré", badgeCaution:"Prudence*", badgeSafe:"Sûr",
+    tipLactulose:"Première ligne préférée en MRC avancée/IRT.",
+    tipPEG:"Le volume d'eau peut poser problème en restriction hydrique.",
+    pegCaution:"<strong>*Prudence PEG :</strong> éviter sans supervision médicale. Le lactulose est le plus utilisé en MRC avancée.",
+    dontUseTitle:"🚫 NE PAS utiliser en insuffisance rénale :",
+    contraMg:"Laxatifs contenant du magnésium (hypermagnésémie)",
+    contraPO4:"Laxatifs contenant du phosphate (néphropathie phosphorique aiguë)",
+    contraBulk:"Agents de lest (restriction hydrique ; polycarbophile apporte du calcium)",
+    step4Title:"🔬 Étape 4 — Deuxième ligne et réfractaire",
+    gccTitle:"Agonistes GC-C", ccTitle:"Activateur du canal chlorure",
+    htTitle:"Agoniste 5-HT₄",
+    dualTitle:"Bénéfice double (hyperphosphatémie + constipation)",
+    rectalTitle:"Traitements rectaux (PRN)",
+    linaclotideLi:"<strong>Linaclotide</strong> 72–145 μg/j",
+    plecanatideLi:"<strong>Plécanatide</strong> 3 mg/j",
+    lubiprostoneLi:"<strong>Lubiprostone</strong> 24 μg 2×/j",
+    prucaloprideLi:"<strong>Prucalopride</strong> — réduire à 1 mg/j en MRC",
+    tenapanorLi:"<strong>Ténapanor</strong> — inhibiteur NHE3. FDA : 30 mg 2×/j avant repas ; Japon : débuter 5 mg 2×/j, titrer à 10–30 mg 2×/j. Surveiller la diarrhée.",
+    rectalLi1:"Suppositoire de glycérine ou bisacodyl PRN",
+    rectalLi2:"Lavement Microlax — <strong>NE PAS utiliser Fleet</strong>",
+    noBMAlert:"<strong>Aucune selle ≥7 jours :</strong> éliminer un fécalome / une occlusion.",
+    step5Title:"👥 Étape 5 — Populations spéciales",
+    pdTitle:"🔄 Dialyse péritonéale", txTitle:"🫀 Greffés rénaux",
+    pallTitle:"🕊️ Soins palliatifs rénaux", hyperKTitle:"⚠️ Hyperkaliémie",
+    pdCritical:"<strong>Critique :</strong> constipation → migration du cathéter / échec de drainage.",
+    pdLi1:"Senna et bisacodyl peuvent être de première ligne.", pdLi2:"Envisager des synbiotiques.",
+    pdLi3:"Ténapanor pour phosphate + constipation.",
+    txLi1:"La diarrhée (mycophénolate) est plus fréquente.",
+    txLi2:"Si constipation : docusate 200 mg 2×/j → sennosides 24 mg 2×/j ou PEG 17 g/j.",
+    pallLi1:"Fentanyl préféré (moins de constipation).",
+    pallLi2:"Envisager méthylnaltrexone si OIC réfractaire.",
+    hyperKLi1:"La constipation aggrave l'hyperkaliémie.",
+    hyperKLi2:"Les chélateurs de potassium peuvent causer la constipation.",
+    step6Title:"📄 Étape 6 — Résumé personnalisé",
+    copyBtn:"📋 Copier", pdfBtn:"📄 Exporter PDF", printBtn:"🖨️ Imprimer", resetBtn:"🔄 Nouvelle évaluation",
+    step7Title:"📊 Étape 7 — Algorithme",
+    tabDiagram:"Diagramme", tabText:"Version texte",
+    diagramStatus:"📌 Diagramme affiché.",
+    renderMermaidBtn:"🔁 Rendre amélioré",
+    exportPngBtn:"📥 PNG", exportSvgBtn:"📐 SVG",
+    printFullBtn:"🖨️ Imprimer le protocole complet",
+    editAssessment:"Modifier l'évaluation",
+    textVersionTitle:"Parcours par étapes (texte)",
+    textLi1:"<strong>Dépistage</strong> — tout signal → évaluation urgente.",
+    textLi2:"<strong>Non pharmacologique</strong> — fibres, hydratation, activité, habitudes, révision des médicaments.",
+    textLi3:"<strong>1ʳᵉ ligne</strong> — lactulose ± docusate/senna/bisacodyl (éviter Mg²⁺ & PO₄).",
+    textLi4:"<strong>2ᵉ ligne</strong> — linaclotide, plécanatide, lubiprostone, prucalopride (1 mg en MRC).",
+    textLi5:"<strong>Double bénéfice</strong> — ajouter ténapanor si hyperphosphatémie.",
+    textLi6:"<strong>Réfractaire</strong> — traitements rectaux PRN + référence spécialisée.",
+    disclaimer:"<strong>Avertissement :</strong> Outil éducatif / aide à la décision. Individualiser le traitement.",
+    references:"D'après : Cha RR et al. J Neurogastroenterol Motil. 2023;29(4):428-435 ; BC Renal Agency ; KDIGO ; AGA.",
+    flowStart:"Patient avec MRC + Constipation", flowRedFlags:"Signaux d'alarme ?",
+    flowRedFlagsSub:"Aucune selle >7j · occlusion · saignement",
+    flowUrgent1:"🚨 Éliminer fécalome / occlusion", flowUrgent2:"référence urgente",
+    flowStep1:"Étape 1 : Non pharmacologique", flowStep1Sub:"Fibres · hydratation · activité · habitudes · médicaments",
+    flowImproved:"Amélioration ?", flowMaintain:"✅ Maintenir", flowMaintainSub:"Objectif : selle tous les 1–2 j",
+    flowStep2:"Étape 2 : 1ʳᵉ ligne", flowStep2Sub:"Lactulose ± docusate / senna / bisacodyl",
+    flowBM3:"Selle en 3 jours ?", flowStep3:"Étape 3 : 2ᵉ ligne",
+    flowStep3Sub:"Linaclotide · plécanatide · lubiprostone · prucalopride (1 mg)",
+    flowHyperP:"Hyperphosphatémie ?", flowTenapanor:"💊 Ajouter ténapanor", flowDualSub:"double bénéfice",
+    flowRefractory:"Réfractaire → rectal PRN + référence",
+    flowYes:"Oui", flowNo:"Non",
+    sumUrgent:"🚨 URGENT : signal(s) présent(s) — éliminer fécalome / occlusion.",
+    sumPatientProfile:"Profil du patient", sumRenalStatus:"Statut rénal",
+    sumStoolType:"Type de selle", sumBMFreq:"Fréquence des selles",
+    sumDuration:"Durée", sumSeverityScore:"Score de sévérité", sumSeverity:"Sévérité",
+    sumContribMeds:"Médicaments contributifs", sumComorbid:"Comorbidités",
+    sumRecommended:"Protocole recommandé",
+    sumNonPharm:"<strong>Non pharmacologique :</strong> Fibres 20–38 g/j dans les limites K⁺/PO₄, optimisation hydrique, 30 min/j d'activité, habitudes régulières, révision des médicaments.",
+    sumFirstLineMild:"<strong>1ʳᵉ ligne :</strong> Lactulose 15–30 mL/j ou PEG 17 g/j (prudence : liquide). Docusate seulement si selles dures.",
+    sumFirstLineSevere:"<strong>1ʳᵉ ligne :</strong> Lactulose 15–30 mL PO/j–2×/j. Ajouter senna 8,6–17,2 mg au coucher PRN ou bisacodyl 5–10 mg PRN. Éviter Mg²⁺/PO₄.",
+    sumSecondLine:"<strong>2ᵉ ligne :</strong> Linaclotide 72–145 μg/j, plécanatide 3 mg/j, lubiprostone 24 μg 2×/j, ou prucalopride 1 mg/j (dose MRC).",
+    sumDualBenefit:"<strong>Double bénéfice :</strong> Ténapanor — FDA 30 mg 2×/j ; Japon débuter 5 mg 2×/j titrer à 30 mg 2×/j.",
+    sumPD:"<strong>Spécifique DP :</strong> Constipation → risque de migration du cathéter. Envisager des synbiotiques.",
+    sumTx:"<strong>Spécifique greffe :</strong> Docusate 200 mg 2×/j → sennosides 24 mg 2×/j ou PEG 17 g/j.",
+    sumRescue:"<strong>Secours :</strong> Aucune selle ≥3 j → 2ᵉ ligne. Aucune selle ≥7 j → éliminer fécalome. Rectal PRN seulement. Éviter lavement Fleet.",
+    sumMaintenance:"Objectifs de maintenance",
+    sumMaintLi1:"Cible : selle tous les 1–2 jours (Bristol 3–4).",
+    sumMaintLi2:"Titrer les laxatifs programmés.",
+    sumMaintLi3:"Surveiller le K⁺ — la constipation aggrave l'absorption du potassium.",
+    sumMaintLi4:"Réévaluer à chaque visite.",
+    sumContra:"🚫 Contre-indiqué en MRC : laxatifs Mg²⁺, laxatifs PO₄, agents de lest.",
+    stageCKD3:"MRC stade 3", stageCKD4:"MRC stade 4", stageCKD5:"MRC stade 5",
+    stageHD:"Hémodialyse (HD)", stagePD:"Dialyse péritonéale (DP)", stageTx:"Greffé rénal",
+    bristolD1:"Type 1 — Grumeaux durs", bristolD2:"Type 2 — Saucisse grumeleuse",
+    bristolD3:"Type 3 — Saucisse fissurée", bristolD4:"Type 4 — Lisse et molle (normal)",
+    bristolD5:"Type 5 — Morceaux mous", bristolD6:"Type 6 — Mousseux", bristolD7:"Type 7 — Aqueux",
+    freqLabelDaily:"Quotidienne ou tous les 1–2 jours", freqLabelEvery3:"Tous les 3–4 jours",
+    freqLabelEvery5:"Tous les 5–6 jours", freqLabelLess7:"Moins d'une fois par semaine",
+    durLabelAcute:"Aiguë (<4 semaines)", durLabelSubacute:"Subaiguë (4–12 semaines)", durLabelChronic:"Chronique (>12 semaines)",
+    notSpecified:"Non spécifié", notAssessed:"Non évalué",
+    sevUrgent:"Urgent — Référer", sevSevere:"Sévère", sevModerate:"Modéré", sevMild:"Léger",
+    sevChartTitle:"Score de sévérité", sevChartScore:"Score", sevChartOf:"sur",
+    sevChartFactors:"Facteurs contributifs :",
+    sevFactorBristol:"Type Bristol", sevFactorFreq:"Fréquence",
+    sevFactorDuration:"Durée chronique", sevFactorUrgent:"Signal d'alarme",
+    sevFactorNone:"Aucun facteur majeur",
+    printAllTitle:"Gestion de la constipation dans la MRC — Protocole complet",
+    printAllSubtitle:"Parcours complet par étapes pour la maladie rénale chronique",
+    toastCopied:"✅ Résumé copié !", toastPngDone:"✅ PNG téléchargé !",
+    toastSvgDone:"✅ SVG téléchargé !", toastPdfDone:"✅ PDF exporté !",
+    toastNoDiagram:"⚠️ Aucun diagramme à exporter.",
+    toastPdfFail:"⚠️ Bibliothèque PDF indisponible — utilisation de l'impression.",
+    toastLangSet:"🌐 Langue mise à jour.",
+    toastDiagramReloaded:"✅ Diagramme rechargé."
+  },
+  zh: {
+    appTitle:"🫘 慢性肾病便秘管理", appSubtitle:"交互式阶梯治疗方案 · v3.2",
+    step0Nav:"1. 红旗", step1Nav:"2. 评估", step2Nav:"3. 非药物",
+    step3Nav:"4. 一线", step4Nav:"5. 二线", step5Nav:"6. 特殊",
+    step6Nav:"7. 总结", step7Nav:"📊 流程图",
+    step0Title:"🚨 第0步 — 红旗筛查",
+    step0Intro:"在开始泻药治疗前筛查警示症状。",
+    durationLabel:"当前便秘持续时间",
+    selectPlaceholder:"请选择...",
+    durAcute:"急性（<4周）", durSubacute:"亚急性（4–12周）", durChronic:"慢性（>12周）",
+    lastBMLabel:"末次排便日期（可选）",
+    redFlagsLabel:"警示 / 红旗特征",
+    rf_noBM7:"超过7天未排便", rf_obstruction:"梗阻征象",
+    rf_rectalBleeding:"直肠出血 / 黑便", rf_weightLoss:"不明原因体重下降",
+    rf_anemia:"缺铁性贫血", rf_fhxColon:"结肠癌家族史",
+    rf_newOnset50:"50岁以上新发便秘",
+    continueToAssess:"继续评估 →",
+    step1Title:"📋 第1步 — 患者评估",
+    ckdStageLabel:"CKD分期 / 透析状态",
+    ckd3:"CKD 3期（eGFR 30–59）", ckd4:"CKD 4期（eGFR 15–29）",
+    ckd5:"CKD 5期（eGFR <15，未透析）", hd:"血液透析（HD）",
+    pd:"腹膜透析（PD）", transplant:"肾移植受者",
+    bristolLabel:"布里斯托大便分类",
+    bs1:"硬块", bs2:"香肠状、结块", bs3:"香肠状、有裂缝", bs4:"光滑柔软",
+    bs5:"软块", bs6:"糊状", bs7:"水样",
+    bmFreqLabel:"排便频率",
+    freqDaily:"每天或每1–2天", freqEvery3:"每3–4天",
+    freqEvery5:"每5–6天", freqLess7:"每周少于一次",
+    currentLaxLabel:"当前泻药方案",
+    laxNone:"无 / 未记录", laxMultiple:"多种药物", laxOther:"其他",
+    medsLabel:"相关药物",
+    med_phosphateBinders:"磷结合剂", med_oralIron:"口服铁剂",
+    med_potassiumBinders:"钾结合剂", med_diuretics:"利尿剂",
+    med_opioids:"阿片类", med_antihistamines:"抗组胺药",
+    med_psychotropics:"精神类药物", med_calciumChannel:"钙通道阻滞剂",
+    comorbLabel:"相关合并症",
+    comorb_hyperkalemia:"高钾血症", comorb_hyperphosphatemia:"高磷血症",
+    comorb_fluidRestriction:"液体限制", comorb_diabetes:"糖尿病",
+    comorb_gastroparesis:"胃轻瘫",
+    generateProtocol:"▶ 生成治疗方案", backBtn:"← 返回",
+    nextFirstLine:"下一步：一线治疗 →", nextSecondLine:"下一步：二线治疗 →",
+    nextSpecial:"下一步：特殊人群 →", nextSummary:"下一步：总结 →", backSummary:"← 返回总结",
+    step2Title:"🌿 第2步 — 非药物治疗",
+    step2Intro:"<strong>始终从这里开始。</strong>",
+    fiberTitle:"膳食纤维", fluidTitle:"液体优化", activityTitle:"体力活动",
+    habitsTitle:"排便习惯", medReviewTitle:"药物审查",
+    fiberLi1:"在钾/磷限制内最大化膳食纤维（目标 20–38 g/天）。",
+    fiberLi2:"低钾来源：苹果、浆果、卷心菜、花椰菜、青豆、胡萝卜、大麦。",
+    fiberLi3:"磨碎亚麻籽 1–2 汤匙/天。",
+    fluidLi:"在医嘱限制范围内优化液体摄入。",
+    activityLi:"视耐受情况每日30分钟。",
+    habitsLi:"有便意即如厕；每1–2天定时排便。",
+    medReviewAlert:"尽量减量：磷结合剂、口服铁剂、钾结合剂、利尿剂、阿片类、抗组胺药、精神类药物、CCB。",
+    step3Title:"💊 第3步 — 一线泻药",
+    step3Intro:"<strong>ESRD安全，无需调整剂量：</strong>比沙可啶、多库酯、番泻叶、乳果糖、PEG。",
+    searchPlaceholder:"🔍 筛选药物表...",
+    thAgent:"药物", thClass:"类别", thDose:"起始剂量", thOnset:"起效", thRenal:"肾功能",
+    clsOsmotic:"渗透性", clsSoftener:"软化剂", clsStimulant:"刺激性",
+    doseLactulose:"15–30 mL 口服 每日/每日2次", dosePEG:"17 g 口服 每日",
+    doseDocusate:"100–200 mg 口服 每日", doseSenna:"8.6–17.2 mg 口服 睡前 需要时",
+    doseBisacodyl:"5–10 mg 口服 每日 需要时",
+    onset24_48:"24–48小时", onset48_96:"48–96小时", onset12_72:"12–72小时", onset6_12:"6–12小时",
+    badgePreferred:"首选", badgeCaution:"慎用*", badgeSafe:"安全",
+    tipLactulose:"晚期CKD/ESRD首选一线药物。",
+    tipPEG:"液体限制时所需水量可能成问题。",
+    pegCaution:"<strong>*PEG注意：</strong>无医生监督避免使用。乳果糖是晚期CKD最常用药物。",
+    dontUseTitle:"🚫 肾功能不全禁用：",
+    contraMg:"含镁泻药（高镁血症）",
+    contraPO4:"含磷泻药（急性磷酸盐肾病）",
+    contraBulk:"膨松剂（液体限制；聚卡波非增加钙负荷）",
+    step4Title:"🔬 第4步 — 二线及难治性",
+    gccTitle:"GC-C激动剂", ccTitle:"氯离子通道激活剂", htTitle:"5-HT₄激动剂",
+    dualTitle:"双重获益（高磷血症 + 便秘）",
+    rectalTitle:"直肠治疗（需要时）",
+    linaclotideLi:"<strong>利那洛肽</strong> 72–145 μg/天",
+    plecanatideLi:"<strong>普卡那肽</strong> 3 mg/天",
+    lubiprostoneLi:"<strong>鲁比前列酮</strong> 24 μg 每日2次",
+    prucaloprideLi:"<strong>普芦卡必利</strong> — CKD减至 1 mg/天",
+    tenapanorLi:"<strong>替那帕诺</strong> — NHE3抑制剂。FDA：30 mg 每日2次餐前；日本：起始5 mg每日2次，滴定至10–30 mg每日2次。监测腹泻。",
+    rectalLi1:"甘油或比沙可啶栓剂 需要时",
+    rectalLi2:"Microlax灌肠 — <strong>禁用Fleet灌肠</strong>",
+    noBMAlert:"<strong>≥7天未排便：</strong>排除粪便嵌塞 / 肠梗阻。",
+    step5Title:"👥 第5步 — 特殊人群",
+    pdTitle:"🔄 腹膜透析", txTitle:"🫀 肾移植受者",
+    pallTitle:"🕊️ 姑息性肾病", hyperKTitle:"⚠️ 高钾血症",
+    pdCritical:"<strong>关键：</strong>便秘 → 导管移位 / 引流失败。",
+    pdLi1:"番泻叶和比沙可啶可作为一线。", pdLi2:"考虑合生元补充。",
+    pdLi3:"替那帕诺用于磷 + 便秘。",
+    txLi1:"腹泻（霉酚酸酯）更常见。",
+    txLi2:"若便秘：多库酯 200 mg 每日2次 → 番泻苷 24 mg 每日2次 或 PEG 17 g/天。",
+    pallLi1:"芬太尼为优选阿片类（便秘较少）。",
+    pallLi2:"难治性OIC可考虑甲基纳曲酮。",
+    hyperKLi1:"便秘加重高钾血症。", hyperKLi2:"钾结合剂本身可能致便秘。",
+    step6Title:"📄 第6步 — 个体化总结",
+    copyBtn:"📋 复制", pdfBtn:"📄 导出PDF", printBtn:"🖨️ 打印", resetBtn:"🔄 重新评估",
+    step7Title:"📊 第7步 — 阶梯流程图",
+    tabDiagram:"流程图", tabText:"文本版",
+    diagramStatus:"📌 已显示流程图。",
+    renderMermaidBtn:"🔁 渲染增强版",
+    exportPngBtn:"📥 PNG", exportSvgBtn:"📐 SVG",
+    printFullBtn:"🖨️ 打印完整方案",
+    editAssessment:"编辑评估",
+    textVersionTitle:"阶梯流程（文本）",
+    textLi1:"<strong>红旗筛查</strong> — 任何警示 → 紧急评估。",
+    textLi2:"<strong>非药物</strong> — 纤维、液体、活动、排便习惯、药物审查。",
+    textLi3:"<strong>一线</strong> — 乳果糖 ± 多库酯/番泻叶/比沙可啶（避免Mg²⁺和PO₄）。",
+    textLi4:"<strong>二线</strong> — 利那洛肽、普卡那肽、鲁比前列酮、普芦卡必利（CKD 1 mg）。",
+    textLi5:"<strong>双重获益</strong> — 高磷血症时加替那帕诺。",
+    textLi6:"<strong>难治性</strong> — 直肠治疗需要时 + 专科转诊。",
+    disclaimer:"<strong>免责声明：</strong>仅供教育/临床决策支持。个体化治疗。",
+    references:"参考：Cha RR 等。J Neurogastroenterol Motil. 2023;29(4):428-435；BC Renal Agency；KDIGO；AGA。",
+    flowStart:"CKD + 便秘患者", flowRedFlags:"红旗？",
+    flowRedFlagsSub:"超过7天未排便 · 梗阻 · 出血",
+    flowUrgent1:"🚨 排除粪便嵌塞 / 梗阻", flowUrgent2:"紧急转诊",
+    flowStep1:"第1步：非药物", flowStep1Sub:"纤维 · 液体 · 活动 · 排便习惯 · 药物审查",
+    flowImproved:"改善？", flowMaintain:"✅ 维持", flowMaintainSub:"目标：每1–2天排便",
+    flowStep2:"第2步：一线", flowStep2Sub:"乳果糖 ± 多库酯 / 番泻叶 / 比沙可啶",
+    flowBM3:"3天内排便？", flowStep3:"第3步：二线",
+    flowStep3Sub:"利那洛肽 · 普卡那肽 · 鲁比前列酮 · 普芦卡必利（1 mg）",
+    flowHyperP:"高磷血症？", flowTenapanor:"💊 加替那帕诺", flowDualSub:"双重获益",
+    flowRefractory:"难治性 → 直肠PRN + 转诊",
+    flowYes:"是", flowNo:"否",
+    sumUrgent:"🚨 紧急：存在红旗 — 排除嵌塞 / 梗阻。",
+    sumPatientProfile:"患者概况", sumRenalStatus:"肾功能状态",
+    sumStoolType:"大便类型", sumBMFreq:"排便频率",
+    sumDuration:"持续时间", sumSeverityScore:"严重度评分", sumSeverity:"严重度",
+    sumContribMeds:"相关药物", sumComorbid:"合并症",
+    sumRecommended:"推荐方案",
+    sumNonPharm:"<strong>非药物：</strong>纤维20–38 g/天（在K⁺/PO₄限制内），液体优化，每日30分钟活动，规律排便习惯，药物审查。",
+    sumFirstLineMild:"<strong>一线：</strong>乳果糖15–30 mL/天或PEG 17 g/天（注意液体）。仅在硬便时加多库酯。",
+    sumFirstLineSevere:"<strong>一线：</strong>乳果糖15–30 mL口服 每日–每日2次。加番泻叶8.6–17.2 mg睡前PRN或比沙可啶5–10 mg PRN。避免Mg²⁺/PO₄。",
+    sumSecondLine:"<strong>二线：</strong>利那洛肽72–145 μg/天、普卡那肽3 mg/天、鲁比前列酮24 μg每日2次，或普芦卡必利1 mg/天（CKD剂量）。",
+    sumDualBenefit:"<strong>双重获益：</strong>替那帕诺 — FDA 30 mg每日2次；日本起始5 mg每日2次滴定至30 mg每日2次。",
+    sumPD:"<strong>PD特殊：</strong>便秘 → 导管移位风险。考虑合生元。",
+    sumTx:"<strong>移植特殊：</strong>多库酯200 mg每日2次 → 番泻苷24 mg每日2次或PEG 17 g/天。",
+    sumRescue:"<strong>补救：</strong>≥3天未排便 → 二线。≥7天未排便 → 排除嵌塞。直肠仅PRN。避免Fleet灌肠。",
+    sumMaintenance:"维持目标",
+    sumMaintLi1:"目标：每1–2天排便（布里斯托3–4）。",
+    sumMaintLi2:"滴定定时泻药。",
+    sumMaintLi3:"监测K⁺ — 便秘加重钾吸收。",
+    sumMaintLi4:"每次就诊重新评估。",
+    sumContra:"🚫 CKD禁用：Mg²⁺泻药、PO₄泻药、膨松剂。",
+    stageCKD3:"CKD 3期", stageCKD4:"CKD 4期", stageCKD5:"CKD 5期",
+    stageHD:"血液透析（HD）", stagePD:"腹膜透析（PD）", stageTx:"肾移植受者",
+    bristolD1:"1型 — 硬块", bristolD2:"2型 — 香肠状、结块",
+    bristolD3:"3型 — 香肠状有裂缝", bristolD4:"4型 — 光滑柔软（正常）",
+    bristolD5:"5型 — 软块", bristolD6:"6型 — 糊状", bristolD7:"7型 — 水样",
+    freqLabelDaily:"每天或每1–2天", freqLabelEvery3:"每3–4天",
+    freqLabelEvery5:"每5–6天", freqLabelLess7:"每周少于一次",
+    durLabelAcute:"急性（<4周）", durLabelSubacute:"亚急性（4–12周）", durLabelChronic:"慢性（>12周）",
+    notSpecified:"未指定", notAssessed:"未评估",
+    sevUrgent:"紧急 — 转诊", sevSevere:"重度", sevModerate:"中度", sevMild:"轻度",
+    sevChartTitle:"严重度评分", sevChartScore:"评分", sevChartOf:"满分",
+    sevChartFactors:"相关因素：",
+    sevFactorBristol:"布里斯托类型", sevFactorFreq:"频率",
+    sevFactorDuration:"慢性持续时间", sevFactorUrgent:"红旗警示",
+    sevFactorNone:"无主要因素",
+    printAllTitle:"CKD便秘管理 — 完整方案",
+    printAllSubtitle:"慢性肾病完整阶梯方案",
+    toastCopied:"✅ 总结已复制！", toastPngDone:"✅ PNG已下载！",
+    toastSvgDone:"✅ SVG已下载！", toastPdfDone:"✅ PDF已导出！",
+    toastNoDiagram:"⚠️ 无可导出的流程图。",
+    toastPdfFail:"⚠️ PDF库不可用 — 使用打印对话框。",
+    toastLangSet:"🌐 语言已更新。",
+    toastDiagramReloaded:"✅ 流程图已重新加载。"
+  },
+  es: {
+    appTitle:"🫘 Manejo del estreñimiento en ERC",
+    appSubtitle:"Protocolo interactivo por pasos · v3.2",
+    step0Nav:"1. Señales", step1Nav:"2. Evaluación", step2Nav:"3. No farm.",
+    step3Nav:"4. 1.ª línea", step4Nav:"5. 2.ª línea", step5Nav:"6. Especial",
+    step6Nav:"7. Resumen", step7Nav:"📊 Algoritmo",
+    step0Title:"🚨 Paso 0 — Cribado de señales de alarma",
+    step0Intro:"Buscar signos de alarma antes de iniciar laxantes.",
+    durationLabel:"Duración del estreñimiento actual",
+    selectPlaceholder:"Seleccionar...",
+    durAcute:"Agudo (<4 semanas)", durSubacute:"Subagudo (4–12 semanas)", durChronic:"Crónico (>12 semanas)",
+    lastBMLabel:"Fecha de la última deposición (opcional)",
+    redFlagsLabel:"Signos de alarma",
+    rf_noBM7:"Sin deposición >7 días", rf_obstruction:"Signos de obstrucción",
+    rf_rectalBleeding:"Sangrado rectal / melena", rf_weightLoss:"Pérdida de peso inexplicable",
+    rf_anemia:"Anemia ferropénica", rf_fhxColon:"Antecedentes familiares de cáncer de colon",
+    rf_newOnset50:"Estreñimiento de inicio reciente >50 años",
+    continueToAssess:"Continuar a la evaluación →",
+    step1Title:"📋 Paso 1 — Evaluación del paciente",
+    ckdStageLabel:"Estadio ERC / Diálisis",
+    ckd3:"ERC estadio 3 (TFGe 30–59)", ckd4:"ERC estadio 4 (TFGe 15–29)",
+    ckd5:"ERC estadio 5 (TFGe <15, sin diálisis)", hd:"Hemodiálisis (HD)",
+    pd:"Diálisis peritoneal (DP)", transplant:"Receptor de trasplante renal",
+    bristolLabel:"Escala de Bristol",
+    bs1:"Grumos duros", bs2:"Salchicha grumosa", bs3:"Salchicha agrietada", bs4:"Lisa y blanda",
+    bs5:"Trozos blandos", bs6:"Esponjoso", bs7:"Acuoso",
+    bmFreqLabel:"Frecuencia de deposiciones",
+    freqDaily:"Diaria o cada 1–2 días", freqEvery3:"Cada 3–4 días",
+    freqEvery5:"Cada 5–6 días", freqLess7:"Menos de una vez por semana",
+    currentLaxLabel:"Tratamiento laxante actual",
+    laxNone:"Ninguno / no documentado", laxMultiple:"Múltiples agentes", laxOther:"Otro",
+    medsLabel:"Medicamentos contribuyentes",
+    med_phosphateBinders:"Quelantes de fosfato", med_oralIron:"Hierro oral",
+    med_potassiumBinders:"Quelantes de potasio", med_diuretics:"Diuréticos",
+    med_opioids:"Opioides", med_antihistamines:"Antihistamínicos",
+    med_psychotropics:"Psicotrópicos", med_calciumChannel:"Bloqueadores de canales de calcio",
+    comorbLabel:"Comorbilidades relevantes",
+    comorb_hyperkalemia:"Hiperpotasemia", comorb_hyperphosphatemia:"Hiperfosfatemia",
+    comorb_fluidRestriction:"Restricción de líquidos", comorb_diabetes:"Diabetes mellitus",
+    comorb_gastroparesis:"Gastroparesia",
+    generateProtocol:"▶ Generar protocolo", backBtn:"← Atrás",
+    nextFirstLine:"Siguiente: 1.ª línea →", nextSecondLine:"Siguiente: 2.ª línea →",
+    nextSpecial:"Siguiente: Especial →", nextSummary:"Siguiente: Resumen →", backSummary:"← Volver al resumen",
+    step2Title:"🌿 Paso 2 — Medidas no farmacológicas",
+    step2Intro:"<strong>Siempre empezar aquí.</strong>",
+    fiberTitle:"Fibra dietética", fluidTitle:"Optimización de líquidos",
+    activityTitle:"Actividad física", habitsTitle:"Hábitos intestinales",
+    medReviewTitle:"Revisión de medicamentos",
+    fiberLi1:"Maximizar la fibra tolerada dentro de los límites de K⁺/PO₄ (objetivo 20–38 g/día).",
+    fiberLi2:"Fuentes bajas en K⁺: manzanas, bayas, repollo, coliflor, judías verdes, zanahorias, cebada.",
+    fiberLi3:"Semillas de lino molidas 1–2 cdas/día.",
+    fluidLi:"Optimizar dentro de la restricción prescrita.",
+    activityLi:"Objetivo 30 min/día según tolerancia.",
+    habitsLi:"Responder al impulso; horario regular cada 1–2 días.",
+    medReviewAlert:"Minimizar: quelantes de fosfato, hierro oral, quelantes de potasio, diuréticos, opioides, antihistamínicos, psicotrópicos, BCC.",
+    step3Title:"💊 Paso 3 — Laxantes de primera línea",
+    step3Intro:"<strong>Seguros en ERT a dosis sin cambios:</strong> bisacodilo, docusato, senna, lactulosa, PEG.",
+    searchPlaceholder:"🔍 Filtrar tabla...",
+    thAgent:"Agente", thClass:"Clase", thDose:"Dosis inicial", thOnset:"Inicio", thRenal:"Renal",
+    clsOsmotic:"Osmótico", clsSoftener:"Emoliente", clsStimulant:"Estimulante",
+    doseLactulose:"15–30 mL VO/día o 2×/día", dosePEG:"17 g VO/día",
+    doseDocusate:"100–200 mg VO/día", doseSenna:"8,6–17,2 mg VO al acostarse PRN",
+    doseBisacodyl:"5–10 mg VO/día PRN",
+    onset24_48:"24–48 h", onset48_96:"48–96 h", onset12_72:"12–72 h", onset6_12:"6–12 h",
+    badgePreferred:"Preferido", badgeCaution:"Precaución*", badgeSafe:"Seguro",
+    tipLactulose:"Primera línea preferida en ERC avanzada/ERT.",
+    tipPEG:"El volumen de agua puede ser problemático con restricción de líquidos.",
+    pegCaution:"<strong>*Precaución PEG:</strong> evitar sin supervisión médica. La lactulosa es la más usada en ERC avanzada.",
+    dontUseTitle:"🚫 NO usar en insuficiencia renal:",
+    contraMg:"Laxantes con magnesio (hipermagnesemia)",
+    contraPO4:"Laxantes con fosfato (nefropatía por fosfato aguda)",
+    contraBulk:"Agentes formadores de masa (restricción de líquidos; policarbófilo añade calcio)",
+    step4Title:"🔬 Paso 4 — Segunda línea y refractario",
+    gccTitle:"Agonistas GC-C", ccTitle:"Activador del canal de cloruro",
+    htTitle:"Agonista 5-HT₄",
+    dualTitle:"Beneficio dual (hiperfosfatemia + estreñimiento)",
+    rectalTitle:"Tratamientos rectales (PRN)",
+    linaclotideLi:"<strong>Linaclotida</strong> 72–145 μg/día",
+    plecanatideLi:"<strong>Plecanatida</strong> 3 mg/día",
+    lubiprostoneLi:"<strong>Lubiprostona</strong> 24 μg 2×/día",
+    prucaloprideLi:"<strong>Prucaloprida</strong> — reducir a 1 mg/día en ERC",
+    tenapanorLi:"<strong>Tenapanor</strong> — inhibidor NHE3. FDA: 30 mg 2×/día antes de comidas; Japón: iniciar 5 mg 2×/día, titular a 10–30 mg 2×/día. Vigilar diarrea.",
+    rectalLi1:"Supositorio de glicerina o bisacodilo PRN",
+    rectalLi2:"Enema Microlax — <strong>NO usar enema Fleet</strong>",
+    noBMAlert:"<strong>Sin deposición ≥7 días:</strong> descartar impactación fecal / obstrucción.",
+    step5Title:"👥 Paso 5 — Poblaciones especiales",
+    pdTitle:"🔄 Diálisis peritoneal", txTitle:"🫀 Receptores de trasplante",
+    pallTitle:"🕊️ Renal paliativa", hyperKTitle:"⚠️ Hiperpotasemia",
+    pdCritical:"<strong>Crítico:</strong> estreñimiento → migración del catéter / fallo de drenaje.",
+    pdLi1:"Senna y bisacodilo pueden ser primera línea.", pdLi2:"Considerar simbióticos.",
+    pdLi3:"Tenapanor para fosfato + estreñimiento.",
+    txLi1:"La diarrea (micofenolato) es más frecuente.",
+    txLi2:"Si estreñimiento: docusato 200 mg 2×/día → senósidos 24 mg 2×/día o PEG 17 g/día.",
+    pallLi1:"Fentanilo preferido (menos estreñimiento).",
+    pallLi2:"Considerar metilnaltrexona si OIC refractario.",
+    hyperKLi1:"El estreñimiento empeora la hiperpotasemia.",
+    hyperKLi2:"Los quelantes de potasio pueden causar estreñimiento.",
+    step6Title:"📄 Paso 6 — Resumen personalizado",
+    copyBtn:"📋 Copiar", pdfBtn:"📄 Exportar PDF", printBtn:"🖨️ Imprimir", resetBtn:"🔄 Nueva evaluación",
+    step7Title:"📊 Paso 7 — Algoritmo por pasos",
+    tabDiagram:"Diagrama", tabText:"Versión texto",
+    diagramStatus:"📌 Diagrama mostrado.",
+    renderMermaidBtn:"🔁 Render mejorado",
+    exportPngBtn:"📥 PNG", exportSvgBtn:"📐 SVG",
+    printFullBtn:"🖨️ Imprimir protocolo completo",
+    editAssessment:"Editar evaluación",
+    textVersionTitle:"Ruta por pasos (texto)",
+    textLi1:"<strong>Cribado</strong> — cualquier alarma → evaluación urgente.",
+    textLi2:"<strong>No farmacológico</strong> — fibra, líquidos, actividad, hábitos, revisión de medicamentos.",
+    textLi3:"<strong>1.ª línea</strong> — lactulosa ± docusato/senna/bisacodilo (evitar Mg²⁺ y PO₄).",
+    textLi4:"<strong>2.ª línea</strong> — linaclotida, plecanatida, lubiprostona, prucaloprida (1 mg en ERC).",
+    textLi5:"<strong>Beneficio dual</strong> — añadir tenapanor si hay hiperfosfatemia.",
+    textLi6:"<strong>Refractario</strong> — tratamientos rectales PRN + derivación especializada.",
+    disclaimer:"<strong>Aviso:</strong> Solo educativo / apoyo a la decisión clínica. Individualizar el tratamiento.",
+    references:"Basado en: Cha RR et al. J Neurogastroenterol Motil. 2023;29(4):428-435; BC Renal Agency; KDIGO; AGA.",
+    flowStart:"Paciente con ERC + Estreñimiento", flowRedFlags:"¿Señales de alarma?",
+    flowRedFlagsSub:"Sin deposición >7d · obstrucción · sangrado",
+    flowUrgent1:"🚨 Descartar impactación / obstrucción", flowUrgent2:"derivación urgente",
+    flowStep1:"Paso 1: No farmacológico", flowStep1Sub:"Fibra · líquidos · actividad · hábitos · medicamentos",
+    flowImproved:"¿Mejoría?", flowMaintain:"✅ Mantener", flowMaintainSub:"Objetivo: deposición cada 1–2 días",
+    flowStep2:"Paso 2: 1.ª línea", flowStep2Sub:"Lactulosa ± docusato / senna / bisacodilo",
+    flowBM3:"¿Deposición en 3 días?", flowStep3:"Paso 3: 2.ª línea",
+    flowStep3Sub:"Linaclotida · plecanatida · lubiprostona · prucaloprida (1 mg)",
+    flowHyperP:"¿Hiperfosfatemia?", flowTenapanor:"💊 Añadir tenapanor", flowDualSub:"beneficio dual",
+    flowRefractory:"Refractario → rectal PRN + derivación",
+    flowYes:"Sí", flowNo:"No",
+    sumUrgent:"🚨 URGENTE: señal(es) presente(s) — descartar impactación / obstrucción.",
+    sumPatientProfile:"Perfil del paciente", sumRenalStatus:"Estado renal",
+    sumStoolType:"Tipo de heces", sumBMFreq:"Frecuencia deposicional",
+    sumDuration:"Duración", sumSeverityScore:"Puntuación de gravedad", sumSeverity:"Gravedad",
+    sumContribMeds:"Medicamentos contribuyentes", sumComorbid:"Comorbilidades",
+    sumRecommended:"Protocolo recomendado",
+    sumNonPharm:"<strong>No farmacológico:</strong> Fibra 20–38 g/día dentro de límites K⁺/PO₄, optimización de líquidos, 30 min/día de actividad, hábitos regulares, revisión de medicamentos.",
+    sumFirstLineMild:"<strong>1.ª línea:</strong> Lactulosa 15–30 mL/día o PEG 17 g/día (precaución: líquidos). Docusato solo si heces duras.",
+    sumFirstLineSevere:"<strong>1.ª línea:</strong> Lactulosa 15–30 mL VO/día–2×/día. Añadir senna 8,6–17,2 mg al acostarse PRN o bisacodilo 5–10 mg PRN. Evitar Mg²⁺/PO₄.",
+    sumSecondLine:"<strong>2.ª línea:</strong> Linaclotida 72–145 μg/día, plecanatida 3 mg/día, lubiprostona 24 μg 2×/día, o prucaloprida 1 mg/día (dosis ERC).",
+    sumDualBenefit:"<strong>Beneficio dual:</strong> Tenapanor — FDA 30 mg 2×/día; Japón iniciar 5 mg 2×/día titular a 30 mg 2×/día.",
+    sumPD:"<strong>Específico DP:</strong> Estreñimiento → riesgo de migración del catéter. Considerar simbióticos.",
+    sumTx:"<strong>Específico trasplante:</strong> Docusato 200 mg 2×/día → senósidos 24 mg 2×/día o PEG 17 g/día.",
+    sumRescue:"<strong>Rescate:</strong> Sin deposición ≥3 días → 2.ª línea. Sin deposición ≥7 días → descartar impactación. Rectal solo PRN. Evitar enema Fleet.",
+    sumMaintenance:"Objetivos de mantenimiento",
+    sumMaintLi1:"Objetivo: deposición cada 1–2 días (Bristol 3–4).",
+    sumMaintLi2:"Titular laxantes programados.",
+    sumMaintLi3:"Monitorizar K⁺ — el estreñimiento empeora la absorción de potasio.",
+    sumMaintLi4:"Reevaluar en cada visita.",
+    sumContra:"🚫 Contraindicado en ERC: laxantes Mg²⁺, laxantes PO₄, agentes formadores de masa.",
+    stageCKD3:"ERC estadio 3", stageCKD4:"ERC estadio 4", stageCKD5:"ERC estadio 5",
+    stageHD:"Hemodiálisis (HD)", stagePD:"Diálisis peritoneal (DP)", stageTx:"Receptor de trasplante renal",
+    bristolD1:"Tipo 1 — Grumos duros", bristolD2:"Tipo 2 — Salchicha grumosa",
+    bristolD3:"Tipo 3 — Salchicha agrietada", bristolD4:"Tipo 4 — Lisa y blanda (normal)",
+    bristolD5:"Tipo 5 — Trozos blandos", bristolD6:"Tipo 6 — Esponjoso", bristolD7:"Tipo 7 — Acuoso",
+    freqLabelDaily:"Diaria o cada 1–2 días", freqLabelEvery3:"Cada 3–4 días",
+    freqLabelEvery5:"Cada 5–6 días", freqLabelLess7:"Menos de una vez por semana",
+    durLabelAcute:"Agudo (<4 semanas)", durLabelSubacute:"Subagudo (4–12 semanas)", durLabelChronic:"Crónico (>12 semanas)",
+    notSpecified:"No especificado", notAssessed:"No evaluado",
+    sevUrgent:"Urgente — Derivar", sevSevere:"Grave", sevModerate:"Moderado", sevMild:"Leve",
+    sevChartTitle:"Puntuación de gravedad", sevChartScore:"Puntuación", sevChartOf:"de",
+    sevChartFactors:"Factores contribuyentes:",
+    sevFactorBristol:"Tipo Bristol", sevFactorFreq:"Frecuencia",
+    sevFactorDuration:"Duración crónica", sevFactorUrgent:"Señal de alarma",
+    sevFactorNone:"Sin factores mayores",
+    printAllTitle:"Manejo del estreñimiento en ERC — Protocolo completo",
+    printAllSubtitle:"Ruta completa por pasos para la enfermedad renal crónica",
+    toastCopied:"✅ ¡Resumen copiado!", toastPngDone:"✅ ¡PNG descargado!",
+    toastSvgDone:"✅ ¡SVG descargado!", toastPdfDone:"✅ ¡PDF exportado!",
+    toastNoDiagram:"⚠️ No hay diagrama para exportar.",
+    toastPdfFail:"⚠️ Biblioteca PDF no disponible — usando diálogo de impresión.",
+    toastLangSet:"🌐 Idioma actualizado.",
+    toastDiagramReloaded:"✅ Diagrama recargado."
+  }
+};
+
+/* ============================================================
+   i18n ENGINE   ============================================================ */
+let currentLang = localStorage.getItem('ckd-lang') || 'en';
+function t(key) {
+  return (translations[currentLang] && translations[currentLang][key]) ||
+         (translations.en[key]) || key;
+}
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t(key);
+    if (val && val !== key) el.innerHTML = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const val = t(key);
+    if (val && val !== key) el.placeholder = val;
+  });
+  document.querySelectorAll('[data-tip-key]').forEach(el => {
+    el.setAttribute('data-tip', t(el.getAttribute('data-tip-key')));
+  });
+  const labels = { en:'🌐 EN', fr:'🌐 FR', zh:'🌐 中文', es:'🌐 ES' };
+  document.getElementById('langBtn').textContent = labels[currentLang] || '🌐 EN';
+  document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : currentLang;
+  if (document.getElementById('summaryContent').innerHTML.trim()) generateSummary();
+  // Redraw canvas if visible
+  if (!document.getElementById('canvasWrap').classList.contains('hidden')) drawCanvasDiagram();
+}
+document.getElementById('langBtn').addEventListener('click', () => {
+  const order = ['en','fr','zh','es'];
+  const idx = order.indexOf(currentLang);
+  currentLang = order[(idx + 1) % order.length];
+  localStorage.setItem('ckd-lang', currentLang);
+  applyTranslations();
+  showToast(t('toastLangSet'));
+});
+
+/* STATE */
+const STORAGE_KEY = 'ckd-constipation-v3';
+let patientData = { redFlags:[], duration:'', lastBMDate:'', ckdStage:'', bristol:'', bmFreq:'', currentLaxative:'', meds:[], comorbidities:[] };
+let currentStep = 0;
+
+/* THEME */
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('ckd-theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+themeToggle.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('ckd-theme', next);
+  themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+  if (!document.getElementById('canvasWrap').classList.contains('hidden')) {
+    setTimeout(drawCanvasDiagram, 60);
+  }
+});
+
+/* MERMAID */
+let mermaidReady = false;
+function tryRenderMermaid() {
+  const btn = document.getElementById('mermaidBtn');
+  const status = document.getElementById('diagramStatus');
+  const svgWrap = document.getElementById('svgWrap');
+  const mContainer = document.getElementById('mermaidContainer');
+
+  if (window.__mermaidFailed || typeof mermaid === 'undefined') {
+    status.textContent = '⚠️ Mermaid not loaded (offline). SVG remains usable.';
+    status.style.color = '#c0392b';
+    if (btn) btn.disabled = true;
+    return;
+  }
+  if (mermaidReady) { status.textContent = '✅ Mermaid active.'; return; }
+  try {
+    mermaid.initialize({
+      startOnLoad: false, theme: 'base', securityLevel: 'loose',
+      themeVariables: { primaryColor: '#eaf2f8', primaryTextColor: '#1a5276', primaryBorderColor: '#2980b9', lineColor: '#7f8c8d', fontFamily: 'inherit', fontSize: '13px' }
+    });
+    const chartEl = document.getElementById('mermaidChart');
+    mermaid.render('mermaidSvg', chartEl.textContent.trim())
+      .then(({ svg }) => {
+        mContainer.querySelector('.mermaid').innerHTML = svg;
+        setDiagramView('mermaid');
+        mermaidReady = true;
+        status.textContent = '✅ Mermaid diagram active.';
+        status.style.color = '#1e8449';
+        if (btn) btn.textContent = '✅ Enhanced Active';
+      })
+      .catch(err => {
+        console.warn('Mermaid render error:', err);
+        status.textContent = '⚠️ Mermaid render failed — using SVG.';
+        status.style.color = '#c0392b';
+      });
+  } catch (e) { console.warn('Mermaid init error:', e); }
+}
+
+/* ============================================================
+   CANVAS DIAGRAM — Safari-proof fallback
+   ============================================================ */
+function drawCanvasDiagram() {
+  const canvas = document.getElementById('algorithmCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const c = {
+    bg:      isDark ? '#1c2530' : '#ffffff',
+    box:     isDark ? '#1e3a4a' : '#eaf2f8',
+    boxStr:  isDark ? '#5499c7' : '#2980b9',
+    start:   isDark ? '#2980b9' : '#1a5276',
+    startTxt:isDark ? '#12181f' : '#ffffff',
+    urgent:  isDark ? '#3a1e1e' : '#fdedec',
+    urgentStr:isDark ? '#ec7063' : '#c0392b',
+    urgentTxt:isDark ? '#ec7063' : '#c0392b',
+    goal:    isDark ? '#1e3a2a' : '#d5f5e3',
+    goalStr: isDark ? '#58d68d' : '#1e8449',
+    goalTxt: isDark ? '#58d68d' : '#1e8449',
+    dual:    isDark ? '#3a3418' : '#fef9e7',
+    dualStr: isDark ? '#f4d03f' : '#e67e22',
+    dualTxt: isDark ? '#f4d03f' : '#b7950b',
+    text:    isDark ? '#e8eef2' : '#2c3e50',
+    textLight:isDark ? '#a9b7c2' : '#5d6d7e',
+    line:    isDark ? '#7f8c8d' : '#7f8c8d'
+  };
+
+  ctx.fillStyle = c.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  const font = (size, weight='600') => `${weight} ${size}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+  const cx = W / 2;
+
+  function roundRect(x, y, w, h, r, fill, stroke, sw=2) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = sw; ctx.stroke(); }
+  }
+
+  function diamond(cx0, cy0, w, h, fill, stroke) {
+    ctx.beginPath();
+    ctx.moveTo(cx0, cy0 - h/2);
+    ctx.lineTo(cx0 + w/2, cy0);
+    ctx.lineTo(cx0, cy0 + h/2);
+    ctx.lineTo(cx0 - w/2, cy0);
+    ctx.closePath();
+    ctx.fillStyle = fill; ctx.fill();
+    ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.stroke();
+  }
+
+  function centerText(txt, x, y, size, color, weight='600', maxWidth) {
+    ctx.font = font(size, weight);
+    ctx.fillStyle = color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    if (maxWidth && ctx.measureText(txt).width > maxWidth) {
+      const words = String(txt).split(' ');
+      let line = '', lines = [];
+      for (const w of words) {
+        const test = line ? line + ' ' + w : w;
+        if (ctx.measureText(test).width > maxWidth && line) { lines.push(line); line = w; }
+        else line = test;
+      }
+      if (line) lines.push(line);
+      const lineH = size * 1.25;
+      const startY = y - ((lines.length - 1) * lineH) / 2;
+      lines.forEach((ln, i) => ctx.fillText(ln, x, startY + i * lineH));
+    } else {
+      ctx.fillText(txt, x, y);
+    }
+  }
+
+  function arrow(x1, y1, x2, y2, color) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = color || c.line;
+    ctx.lineWidth = 1.6;
+    ctx.stroke();
+    const angle = Math.atan2(y2 - y1, x2 - x1);
+    const aLen = 9, aAngle = Math.PI / 7;
+    ctx.beginPath();
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - aLen * Math.cos(angle - aAngle), y2 - aLen * Math.sin(angle - aAngle));
+    ctx.lineTo(x2 - aLen * Math.cos(angle + aAngle), y2 - aLen * Math.sin(angle + aAngle));
+    ctx.closePath();
+    ctx.fillStyle = color || c.line;
+    ctx.fill();
+  }
+
+  let y = 30;
+  const nodeW = 260, nodeH = 44, bigNodeH = 62;
+
+  roundRect(cx - nodeW/2, y, nodeW, nodeH, nodeH/2, c.start, c.start, 2);
+  centerText(t('flowStart'), cx, y + nodeH/2, 13, c.startTxt, '700', nodeW - 24);
+  y += nodeH + 22;
+  arrow(cx, y - 22, cx, y, c.line);
+
+  diamond(cx, y + 28, 240, 56, c.box, c.boxStr);
+  centerText(t('flowRedFlags'), cx, y + 22, 12, c.text, '700');
+  ctx.font = font(10, '400');
+  ctx.fillStyle = c.textLight;
+  ctx.textAlign = 'center';
+  ctx.fillText(t('flowRedFlagsSub'), cx, y + 40);
+  y += 56 + 18;
+
+  const urX = cx + 130, urY = y;
+  arrow(cx + 120, y - 40, urX + 60, urY, c.urgentStr);
+  ctx.font = font(11, '700');
+  ctx.fillStyle = c.urgentTxt;
+  ctx.textAlign = 'center';
+  ctx.fillText(t('flowYes'), cx + 155, y - 48);
+  roundRect(urX, urY, 200, bigNodeH, 8, c.urgent, c.urgentStr);
+  centerText(t('flowUrgent1'), urX + 100, urY + 22, 11, c.urgentTxt, '700', 180);
+  centerText(t('flowUrgent2'), urX + 100, urY + 40, 10, c.urgentTxt, '400', 180);
+
+  arrow(cx, y - 18, cx, y + 8, c.line);
+  ctx.font = font(11, '700');
+  ctx.fillStyle = c.textLight;
+  ctx.textAlign = 'center';
+  ctx.fillText(t('flowNo'), cx + 18, y - 4);
+  y += 20;
+
+  roundRect(cx - nodeW/2 - 20, y, nodeW + 40, bigNodeH, 8, c.box, c.boxStr);
+  centerText(t('flowStep1'), cx, y + 22, 12, c.text, '700', nodeW + 20);
+  centerText(t('flowStep1Sub'), cx, y + 42, 10, c.textLight, '400', nodeW + 20);
+  y += bigNodeH + 20;
+  arrow(cx, y - 20, cx, y, c.line);
+
+  diamond(cx, y + 28, 220, 56, c.box, c.boxStr);
+  centerText(t('flowImproved'), cx, y + 28, 12, c.text, '700');
+  y += 56 + 18;
+
+  const gX = cx + 130, gY = y;
+  arrow(cx + 110, y - 40, gX + 60, gY, c.goalStr);
+  ctx.font = font(11, '700');
+  ctx.fillStyle = c.goalTxt;
+  ctx.fillText(t('flowYes'), cx + 145, y - 48);
+  roundRect(gX, gY, 200, bigNodeH, 8, c.goal, c.goalStr);
+  centerText(t('flowMaintain'), gX + 100, gY + 22, 12, c.goalTxt, '700', 180);
+  centerText(t('flowMaintainSub'), gX + 100, gY + 42, 10, c.goalTxt, '400', 180);
+
+  arrow(cx, y - 18, cx, y + 8, c.line);
+  ctx.fillStyle = c.textLight;
+  ctx.fillText(t('flowNo'), cx + 18, y - 4);
+  y += 20;
+
+  roundRect(cx - nodeW/2 - 20, y, nodeW + 40, bigNodeH, 8, c.box, c.boxStr);
+  centerText(t('flowStep2'), cx, y + 22, 12, c.text, '700', nodeW + 20);
+  centerText(t('flowStep2Sub'), cx, y + 42, 10, c.textLight, '400', nodeW + 20);
+  y += bigNodeH + 20;
+  arrow(cx, y - 20, cx, y, c.line);
+
+  diamond(cx, y + 28, 220, 56, c.box, c.boxStr);
+  centerText(t('flowBM3'), cx, y + 28, 12, c.text, '700');
+  y += 56 + 18;
+
+  ctx.beginPath();
+  ctx.moveTo(cx + 110, y - 40);
+  ctx.lineTo(W - 30, y - 40);
+  ctx.lineTo(W - 30, gY + bigNodeH/2);
+  ctx.lineTo(gX + 200, gY + bigNodeH/2);
+  ctx.strokeStyle = c.goalStr;
+  ctx.lineWidth = 1.6;
+  ctx.stroke();
+  const ahX = gX + 200, ahY = gY + bigNodeH/2;
+  ctx.beginPath();
+  ctx.moveTo(ahX, ahY);
+  ctx.lineTo(ahX + 8, ahY - 5);
+  ctx.lineTo(ahX + 8, ahY + 5);
+  ctx.closePath();
+  ctx.fillStyle = c.goalStr;
+  ctx.fill();
+  ctx.font = font(11, '700');
+  ctx.fillStyle = c.goalTxt;
+  ctx.textAlign = 'center';
+  ctx.fillText(t('flowYes'), cx + 140, y - 48);
+
+  arrow(cx, y - 18, cx, y + 8, c.line);
+  ctx.fillStyle = c.textLight;
+  ctx.fillText(t('flowNo'), cx + 18, y - 4);
+  y += 20;
+
+  roundRect(cx - nodeW/2 - 30, y, nodeW + 60, bigNodeH, 8, c.box, c.boxStr);
+  centerText(t('flowStep3'), cx, y + 22, 12, c.text, '700', nodeW + 40);
+  centerText(t('flowStep3Sub'), cx, y + 42, 10, c.textLight, '400', nodeW + 40);
+  y += bigNodeH + 20;
+  arrow(cx, y - 20, cx, y, c.line);
+
+  diamond(cx, y + 28, 220, 56, c.box, c.boxStr);
+  centerText(t('flowHyperP'), cx, y + 28, 12, c.text, '700');
+  y += 56 + 18;
+
+  const tX = cx + 130, tY = y;
+  arrow(cx + 110, y - 40, tX + 60, tY, c.dualStr);
+  ctx.font = font(11, '700');
+  ctx.fillStyle = c.dualTxt;
+  ctx.fillText(t('flowYes'), cx + 145, y - 48);
+  roundRect(tX, tY, 200, bigNodeH, 8, c.dual, c.dualStr);
+  centerText(t('flowTenapanor'), tX + 100, tY + 22, 12, c.dualTxt, '700', 180);
+  centerText(t('flowDualSub'), tX + 100, tY + 42, 10, c.dualTxt, '400', 180);
+
+  arrow(cx, y - 18, cx, y + 8, c.line);
+  ctx.fillStyle = c.textLight;
+  ctx.fillText(t('flowNo'), cx + 18, y - 4);
+  y += 20;
+
+  roundRect(cx - 130, y, 260, 40, 8, c.urgent, c.urgentStr);
+  centerText(t('flowRefractory'), cx, y + 20, 11, c.urgentTxt, '700', 240);
+}
+
+/* ============================================================
+   VIEW MODE SWITCHER
+   ============================================================ */
+function setDiagramView(mode) {
+  const cssFlow = document.getElementById('cssFlow');
+  const canvasWrap = document.getElementById('canvasWrap');
+  const svgWrap = document.getElementById('svgWrap');
+  const mContainer = document.getElementById('mermaidContainer');
+  const status = document.getElementById('diagramStatus');
+
+  [cssFlow, canvasWrap, svgWrap, mContainer].forEach(el => el && el.classList.add('hidden'));
+
+  document.querySelectorAll('.view-mode-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.view === mode);
+  });
+
+  if (mode === 'css') {
+    cssFlow.classList.remove('hidden');
+    status.textContent = '📌 CSS flowchart (Safari-safe)';
+  } else if (mode === 'canvas') {
+    canvasWrap.classList.remove('hidden');
+    drawCanvasDiagram();
+    status.textContent = '📌 Canvas diagram (Safari-safe)';
+  } else if (mode === 'svg') {
+    svgWrap.classList.remove('hidden');
+    const svg = svgWrap.querySelector('svg');
+    if (svg) {
+      svg.setAttribute('width', '640');
+      svg.setAttribute('height', '880');
+      svg.setAttribute('style', 'display:block;max-width:100%;height:auto;');
+    }
+    status.textContent = '📌 SVG diagram';
+  } else if (mode === 'mermaid') {
+    mContainer.classList.remove('hidden');
+    status.textContent = '✅ Enhanced Mermaid diagram';
+  }
+  status.style.color = '';
+  try { localStorage.setItem('ckd-view', mode); } catch(e) {}
+}
+
+/* BRISTOL */
+document.querySelectorAll('.bristol-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.bristol-item').forEach(i => { i.classList.remove('selected'); i.setAttribute('aria-checked','false'); });
+    this.classList.add('selected'); this.setAttribute('aria-checked','true');
+    document.getElementById('bristolType').value = this.dataset.bs;
+    autoSave();
+  });
+});
+
+/* RED FLAGS */
+document.querySelectorAll('.redflag-check').forEach(cb => cb.addEventListener('change', updateRedFlagAlert));
+document.getElementById('duration').addEventListener('change', updateRedFlagAlert);
+document.getElementById('lastBMDate').addEventListener('change', updateRedFlagAlert);
+function updateRedFlagAlert() {
+  const flags = Array.from(document.querySelectorAll('.redflag-check:checked')).map(c => c.value);
+  const alertBox = document.getElementById('redFlagAlert');
+  const lastBM = document.getElementById('lastBMDate').value;
+  let days = null;
+  if (lastBM) days = Math.floor((Date.now() - new Date(lastBM).getTime()) / 86400000);
+  const urgent = flags.filter(f => ['noBM7','obstruction','rectalBleeding'].includes(f));
+  const cancer = flags.filter(f => ['weightLoss','anemia','fhxColon','newOnset50'].includes(f));
+  if (urgent.length > 0 || (days !== null && days > 7)) {
+    alertBox.className = 'alert alert-danger';
+    alertBox.classList.remove('hidden');
+    alertBox.innerHTML = t('sumUrgent');
+  } else if (cancer.length > 0) {
+    alertBox.className = 'alert alert-warning';
+    alertBox.classList.remove('hidden');
+    alertBox.innerHTML = '⚠️ Alarm feature(s) present. Consider colonoscopy referral.';
+  } else alertBox.classList.add('hidden');
+}
+
+/* COLLAPSIBLE */
+function toggleCollapsible(h) {
+  const open = h.classList.toggle('open');
+  h.setAttribute('aria-expanded', open);
+  h.nextElementSibling.classList.toggle('open');
+}
+
+/* NAVIGATION */
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => el.classList.toggle('active', i === step));
+  document.querySelectorAll('.progress-step').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+    el.classList.toggle('completed', i < step);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  try { localStorage.setItem('ckd-step', step); } catch(e) {}
+}
+document.querySelectorAll('.progress-step').forEach(step => {
+  step.addEventListener('click', function() {
+    const stepNum = parseInt(this.dataset.step);
+    if (stepNum <= currentStep || stepNum <= 1) goToStep(stepNum);
+  });
+});
+
+/* SEARCH */
+document.getElementById('drugSearch1').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('#drugTable1 tbody tr').forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+});
+
+/* AUTOSAVE */
+function autoSave() {
+  try {
+    patientData.redFlags = Array.from(document.querySelectorAll('.redflag-check:checked')).map(c => c.value);
+    patientData.duration = document.getElementById('duration').value;
+    patientData.lastBMDate = document.getElementById('lastBMDate').value;
+    patientData.ckdStage = document.getElementById('ckdStage').value;
+    patientData.bristol = document.getElementById('bristolType').value;
+    patientData.bmFreq = document.getElementById('bmFreq').value;
+    patientData.currentLaxative = document.getElementById('currentLaxative').value;
+    patientData.meds = Array.from(document.querySelectorAll('.med-check:checked')).map(c => c.value);
+    patientData.comorbidities = Array.from(document.querySelectorAll('.comorb-check:checked')).map(c => c.value);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(patientData));
+  } catch(e) {}
+}
+document.querySelectorAll('select, input').forEach(el => el.addEventListener('change', autoSave));
+
+function restoreState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    const d = JSON.parse(saved);
+    Object.assign(patientData, d);
+    if (d.redFlags) d.redFlags.forEach(v => { const cb = document.querySelector(`.redflag-check[value="${v}"]`); if (cb) cb.checked = true; });
+    if (d.duration) document.getElementById('duration').value = d.duration;
+    if (d.lastBMDate) document.getElementById('lastBMDate').value = d.lastBMDate;
+    if (d.ckdStage) document.getElementById('ckdStage').value = d.ckdStage;
+    if (d.bmFreq) document.getElementById('bmFreq').value = d.bmFreq;
+    if (d.currentLaxative) document.getElementById('currentLaxative').value = d.currentLaxative;
+    if (d.bristol) {
+      document.getElementById('bristolType').value = d.bristol;
+      const b = document.querySelector(`.bristol-item[data-bs="${d.bristol}"]`);
+      if (b) { b.classList.add('selected'); b.setAttribute('aria-checked','true'); }
+    }
+    if (d.meds) d.meds.forEach(v => { const cb = document.querySelector(`.med-check[value="${v}"]`); if (cb) cb.checked = true; });
+    if (d.comorbidities) d.comorbidities.forEach(v => { const cb = document.querySelector(`.comorb-check[value="${v}"]`); if (cb) cb.checked = true; });
+    updateRedFlagAlert();
+  } catch(e) {}
+}
+
+/* SEVERITY */
+function calculateSeverity(bristol, freq, duration, redFlags) {
+  let score = 0;
+  const factors = [];
+  const b = parseInt(bristol) || 0;
+  if (b >= 1 && b <= 2) { score += 2; factors.push('sevFactorBristol'); }
+  else if (b === 3) { score += 1; factors.push('sevFactorBristol'); }
+  if (freq === 'every3') { score += 1; factors.push('sevFactorFreq'); }
+  else if (freq === 'every5') { score += 2; factors.push('sevFactorFreq'); }
+  else if (freq === 'less7') { score += 3; factors.push('sevFactorFreq'); }
+  if (duration === 'chronic') { score += 1; factors.push('sevFactorDuration'); }
+  const urgent = redFlags.filter(f => ['noBM7','obstruction','rectalBleeding'].includes(f));
+  if (urgent.length > 0) { score = 6; factors.push('sevFactorUrgent'); return { labelKey:'sevUrgent', cls:'alert-danger', score, factors }; }
+  if (score >= 5) return { labelKey:'sevSevere', cls:'alert-danger', score, factors };
+  if (score >= 3) return { labelKey:'sevModerate', cls:'alert-warning', score, factors };
+  return { labelKey:'sevMild', cls:'alert-info', score, factors };
+}
+
+/* SEVERITY BAR */
+function renderSeverityBar(sev) {
+  const pct = Math.min(100, (sev.score / 6) * 100);
+  const tier = sev.labelKey === 'sevUrgent' ? 'urgent'
+             : sev.labelKey === 'sevSevere' ? 'severe'
+             : sev.labelKey === 'sevModerate' ? 'moderate' : 'mild';
+  const valueColor = { mild:'#1e8449', moderate:'#b7950b', severe:'#c0392b', urgent:'#c0392b' }[tier];
+  let factorsHtml = '';
+  if (sev.factors.length > 0) {
+    factorsHtml = `<div class="severity-factors">${t('sevChartFactors')} ` +
+      sev.factors.map(f => `<span class="factor">${t(f)}</span>`).join('') + '</div>';
+  } else {
+    factorsHtml = `<div class="severity-factors">${t('sevFactorNone')}</div>`;
+  }
+  return `
+    <div class="severity-container">
+      <div class="severity-header">
+        <span class="label">${t('sevChartTitle')}</span>
+        <span class="value" style="color:${valueColor};">${t(sev.labelKey)} · ${sev.score}/6</span>
+      </div>
+      <div class="severity-bar">
+        <div class="severity-segment sev-seg-mild"></div>
+        <div class="severity-segment sev-seg-moderate"></div>
+        <div class="severity-segment sev-seg-severe"></div>
+        <div class="severity-marker" style="left: calc(${pct}% - 1.5px);"></div>
+      </div>
+      <div class="severity-scale"><span>0</span><span>3</span><span>6</span></div>
+      <div class="severity-legend">
+        <div class="severity-legend-item"><span class="severity-legend-dot sev-seg-mild"></span>${t('sevMild')}</div>
+        <div class="severity-legend-item"><span class="severity-legend-dot sev-seg-moderate"></span>${t('sevModerate')}</div>
+        <div class="severity-legend-item"><span class="severity-legend-dot sev-seg-severe"></span>${t('sevSevere')}</div>
+        <div class="severity-legend-item"><span class="severity-legend-dot sev-seg-urgent"></span>${t('sevUrgent')}</div>
+      </div>
+      ${factorsHtml}
+    </div>
+  `;
+}
+
+/* ASSESSMENT */
+function runAssessment() {
+  if (!document.getElementById('ckdStage').value) { alert('Select CKD stage.'); goToStep(1); return; }
+  const bristol = document.getElementById('bristolType').value;
+  const bmFreq = document.getElementById('bmFreq').value;
+  if (!bristol && !bmFreq) { alert('Indicate Bristol type or BM frequency.'); return; }
+  autoSave();
+  generateSummary();
+  goToStep(2);
+}
+
+/* SUMMARY */
+function generateSummary() {
+  const div = document.getElementById('summaryContent');
+  const bristol = parseInt(patientData.bristol) || 0;
+  const sev = calculateSeverity(bristol, patientData.bmFreq, patientData.duration, patientData.redFlags);
+
+  const stageMap = { ckd3:'stageCKD3', ckd4:'stageCKD4', ckd5:'stageCKD5', hd:'stageHD', pd:'stagePD', transplant:'stageTx' };
+  const bristolMap = { '1':'bristolD1','2':'bristolD2','3':'bristolD3','4':'bristolD4','5':'bristolD5','6':'bristolD6','7':'bristolD7' };
+  const freqMap = { daily:'freqLabelDaily', every3:'freqLabelEvery3', every5:'freqLabelEvery5', less7:'freqLabelLess7' };
+  const durMap = { acute:'durLabelAcute', subacute:'durLabelSubacute', chronic:'durLabelChronic' };
+  const medMap = { phosphateBinders:'med_phosphateBinders', oralIron:'med_oralIron', potassiumBinders:'med_potassiumBinders', diuretics:'med_diuretics', opioids:'med_opioids', antihistamines:'med_antihistamines', psychotropics:'med_psychotropics', calciumChannel:'med_calciumChannel' };
+  const comorbMap = { hyperkalemia:'comorb_hyperkalemia', hyperphosphatemia:'comorb_hyperphosphatemia', fluidRestriction:'comorb_fluidRestriction', diabetes:'comorb_diabetes', gastroparesis:'comorb_gastroparesis' };
+
+  let html = '';
+  const urgent = patientData.redFlags.filter(f => ['noBM7','obstruction','rectalBleeding'].includes(f));
+  if (urgent.length) html += `<div class="alert alert-danger">${t('sumUrgent')}</div>`;
+
+  html += `<h3>${t('sumPatientProfile')}</h3>
+  <div class="summary-grid">
+    <div class="summary-item"><strong>${t('sumRenalStatus')}</strong>${t(stageMap[patientData.ckdStage] || 'notSpecified')}</div>
+    <div class="summary-item"><strong>${t('sumStoolType')}</strong>${t(bristolMap[patientData.bristol] || 'notAssessed')}</div>
+    <div class="summary-item"><strong>${t('sumBMFreq')}</strong>${t(freqMap[patientData.bmFreq] || 'notSpecified')}</div>
+    <div class="summary-item"><strong>${t('sumDuration')}</strong>${t(durMap[patientData.duration] || 'notSpecified')}</div>
+  </div>`;
+
+  html += renderSeverityBar(sev);
+
+  if (patientData.meds.length) {
+    html += `<h3>${t('sumContribMeds')}</h3><ul>`;
+    patientData.meds.forEach(m => html += `<li>${t(medMap[m] || m)}</li>`);
+    html += `</ul>`;
+  }
+  if (patientData.comorbidities.length) {
+    html += `<h3>${t('sumComorbid')}</h3><ul>`;
+    patientData.comorbidities.forEach(c => html += `<li>${t(comorbMap[c] || c)}</li>`);
+    html += `</ul>`;
+  }
+
+  html += `<h3>${t('sumRecommended')}</h3><ol style="padding-left:1.2rem;">`;
+  html += `<li style="margin-bottom:.6rem;">${t('sumNonPharm')}</li>`;
+  if (t(sev.labelKey) === t('sevMild')) html += `<li style="margin-bottom:.6rem;">${t('sumFirstLineMild')}</li>`;
+  else html += `<li style="margin-bottom:.6rem;">${t('sumFirstLineSevere')}</li>`;
+  html += `<li style="margin-bottom:.6rem;">${t('sumSecondLine')}</li>`;
+  if (patientData.comorbidities.includes('hyperphosphatemia')) html += `<li style="margin-bottom:.6rem;">${t('sumDualBenefit')}</li>`;
+  if (patientData.ckdStage === 'pd') html += `<li style="margin-bottom:.6rem;">${t('sumPD')}</li>`;
+  else if (patientData.ckdStage === 'transplant') html += `<li style="margin-bottom:.6rem;">${t('sumTx')}</li>`;
+  html += `<li style="margin-bottom:.6rem;">${t('sumRescue')}</li></ol>`;
+
+  html += `<h3>${t('sumMaintenance')}</h3><ul>
+    <li>${t('sumMaintLi1')}</li><li>${t('sumMaintLi2')}</li>
+    <li>${t('sumMaintLi3')}</li><li>${t('sumMaintLi4')}</li></ul>`;
+
+  html += `<div class="alert alert-danger" style="margin-top:1rem;">${t('sumContra')}</div>`;
+  div.innerHTML = html;
+}
+
+/* COPY / TOAST */
+function copySummary() {
+  const txt = document.getElementById('summaryContent').innerText;
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(txt).then(() => showToast(t('toastCopied'))).catch(() => fallbackCopy(txt));
+  } else fallbackCopy(txt);
+}
+function fallbackCopy(txt) {
+  const ta = document.createElement('textarea');
+  ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); showToast(t('toastCopied')); } catch(e) { showToast('Copy failed'); }
+  document.body.removeChild(ta);
+}
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+/* PDF */
+function exportSummaryPDF() {
+  if (window.__html2pdfFailed || typeof html2pdf === 'undefined') {
+    showToast(t('toastPdfFail'));
+    setTimeout(() => window.print(), 500);
+    return;
+  }
+  const el = document.getElementById('summaryContent');
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: `CKD-Constipation-Summary-${dateStamp()}.pdf`,
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, backgroundColor: '#ffffff', useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(el).save().then(() => showToast(t('toastPdfDone'))).catch(err => {
+    console.warn('PDF export error:', err);
+    showToast(t('toastPdfFail'));
+    setTimeout(() => window.print(), 500);
+  });
+}
+
+/* DIAGRAM EXPORT */
+function getActiveDiagramSVG() {
+  const mc = document.getElementById('mermaidContainer');
+  const sw = document.getElementById('svgWrap');
+  if (mc && !mc.classList.contains('hidden')) {
+    const svg = mc.querySelector('svg');
+    if (svg) return svg;
+  }
+  if (sw) return sw.querySelector('svg');
+  return null;
+}
+function cloneSVGWithDimensions(svg, scale=2) {
+  const clone = svg.cloneNode(true);
+  let w, h;
+  const vb = svg.getAttribute('viewBox');
+  if (vb) { const p = vb.split(/\s+/).map(Number); w = p[2]; h = p[3]; }
+  else { w = 640; h = 880; }
+  clone.setAttribute('width', w*scale);
+  clone.setAttribute('height', h*scale);
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const bg = isDark ? '#12181f' : '#ffffff';
+  const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x',0); r.setAttribute('y',0);
+  r.setAttribute('width', w); r.setAttribute('height', h);
+  r.setAttribute('fill', bg);
+  clone.insertBefore(r, clone.firstChild);
+  return { clone, w, h, bg };
+}
+function exportDiagramPNG() {
+  const svg = getActiveDiagramSVG();
+  if (!svg) { showToast(t('toastNoDiagram')); return; }
+  const SCALE = 2;
+  const { clone, w, h, bg } = cloneSVGWithDimensions(svg, SCALE);
+  const s = new XMLSerializer().serializeToString(clone);
+  const blob = new Blob([s], { type:'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = function() {
+    const c = document.createElement('canvas');
+    c.width = w*SCALE; c.height = h*SCALE;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = bg; ctx.fillRect(0,0,c.width,c.height);
+    ctx.drawImage(img, 0, 0, c.width, c.height);
+    URL.revokeObjectURL(url);
+    try {
+      c.toBlob(bl => {
+        if (!bl) return;
+        downloadBlob(bl, `CKD-Constipation-Algorithm-${dateStamp()}.png`);
+        showToast(t('toastPngDone'));
+      }, 'image/png');
+    } catch(e) { showToast('⚠️ PNG blocked — try SVG'); }
+  };
+  img.onerror = () => { URL.revokeObjectURL(url); showToast('⚠️ PNG load error'); };
+  img.src = url;
+}
+function exportDiagramSVG() {
+  const svg = getActiveDiagramSVG();
+  if (!svg) { showToast(t('toastNoDiagram')); return; }
+  const { clone } = cloneSVGWithDimensions(svg, 1);
+  const s = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+  const blob = new Blob([s], { type:'image/svg+xml;charset=utf-8' });
+  downloadBlob(blob, `CKD-Constipation-Algorithm-${dateStamp()}.svg`);
+  showToast(t('toastSvgDone'));
+}
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function dateStamp() {
+  const d = new Date(), p = n => String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}`;
+}
+
+/* PRINT FULL */
+function printFullProtocol() {
+  const container = document.getElementById('printAllContainer');
+  let html = `
+    <div class="print-all-header">
+      <h1>${t('printAllTitle')}</h1>
+      <p>${t('printAllSubtitle')}</p>
+      <p style="margin-top:.5rem;">${new Date().toLocaleDateString()}</p>
+    </div>
+  `;
+  document.querySelectorAll('.step-content').forEach((section, i) => {
+    if (i === 7) return;
+    const clone = section.cloneNode(true);
+    clone.querySelectorAll('.btn, .btn-group, .progress-bar, .view-modes').forEach(b => b.remove());
+    clone.querySelectorAll('.collapsible-body').forEach(b => b.classList.add('open'));
+    clone.querySelectorAll('.collapsible-header').forEach(h => h.classList.add('open'));
+    clone.querySelectorAll('.tab-bar').forEach(t => t.remove());
+    clone.querySelectorAll('input[type="hidden"]').forEach(el => el.remove());
+    html += `<div class="print-all-section">${clone.innerHTML}</div>`;
+  });
+  html += `<div style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ccc;font-size:.75rem;color:#666;text-align:center;">
+    <p>${t('disclaimer')}</p><p style="margin-top:.3rem;">${t('references')}</p></div>`;
+  container.innerHTML = html;
+  document.body.classList.add('print-all');
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => document.body.classList.remove('print-all'), 1000);
+  }, 200);
+}
+
+/* RESET */
+function resetApp() {
+  if (!confirm('Clear all patient data?')) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  ['ckdStage','bristolType','bmFreq','duration','lastBMDate','currentLaxative'].forEach(id => document.getElementById(id).value='');
+  document.querySelectorAll('.med-check, .comorb-check, .redflag-check').forEach(cb => cb.checked=false);
+  document.querySelectorAll('.bristol-item').forEach(i => { i.classList.remove('selected'); i.setAttribute('aria-checked','false'); });
+  document.getElementById('redFlagAlert').classList.add('hidden');
+  patientData = { redFlags:[], duration:'', lastBMDate:'', ckdStage:'', bristol:'', bmFreq:'', currentLaxative:'', meds:[], comorbidities:[] };
+  goToStep(0);
+}
+
+/* TABS */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const tab = this.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === this));
+    document.getElementById('tab-chart').classList.toggle('hidden', tab !== 'chart');
+    document.getElementById('tab-text').classList.toggle('hidden', tab !== 'text');
+  });
+});
+
+/* VIEW MODE BUTTONS */
+document.querySelectorAll('.view-mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => setDiagramView(btn.dataset.view));
+});
+
+/* INIT */
+applyTranslations();
+restoreState();
+const savedStep = parseInt(localStorage.getItem('ckd-step') || '0');
+goToStep(Math.min(savedStep, 1));
+
+/* Default view: CSS flowchart (works everywhere) */
+const savedView = localStorage.getItem('ckd-view');
+setDiagramView(savedView || 'css');
+
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's' && currentStep === 6) {
+    e.preventDefault(); copySummary();
+  }
+});
+</script>
+
+</body>
+</html>
